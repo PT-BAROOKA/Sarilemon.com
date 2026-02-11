@@ -3,6 +3,7 @@ import { Menu, X, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import { products, getWhatsAppLink } from "@/data/products";
 import { Button } from "@/components/ui/button";
+import barookaLogo from "@/assets/barooka-logo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,16 +15,11 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
-            <span className="text-2xl font-display font-bold text-primary">
-              Sari<span className="text-accent">Lemon</span>.id
-            </span>
+            <img src={barookaLogo} alt="Barooka" className="h-10 w-auto" />
           </Link>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
-            <a href="#beranda" className="font-body text-sm font-medium text-foreground/70 hover:text-primary transition-colors">
-              Beranda
-            </a>
             <div
               className="relative"
               onMouseEnter={() => setShowProducts(true)}
@@ -49,6 +45,9 @@ const Navbar = () => {
             <a href="#maklon" className="font-body text-sm font-medium text-foreground/70 hover:text-primary transition-colors">
               Maklon
             </a>
+            <a href="#proses" className="font-body text-sm font-medium text-foreground/70 hover:text-primary transition-colors">
+              Proses
+            </a>
             <a href="#kontak" className="font-body text-sm font-medium text-foreground/70 hover:text-primary transition-colors">
               Kontak
             </a>
@@ -58,7 +57,7 @@ const Navbar = () => {
               rel="noopener noreferrer"
             >
               <Button variant="whatsapp" size="sm">
-                Hubungi Kami
+                WhatsApp
               </Button>
             </a>
           </div>
@@ -76,7 +75,6 @@ const Navbar = () => {
         {isOpen && (
           <div className="md:hidden pb-4 animate-fade-in">
             <div className="flex flex-col gap-2">
-              <a href="#beranda" onClick={() => setIsOpen(false)} className="px-4 py-2 rounded-md font-body text-sm text-foreground/70 hover:bg-muted">Beranda</a>
               <div className="px-4 py-2">
                 <p className="font-body text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Produk</p>
                 {products.map((p) => (
@@ -86,10 +84,11 @@ const Navbar = () => {
                 ))}
               </div>
               <a href="#maklon" onClick={() => setIsOpen(false)} className="px-4 py-2 rounded-md font-body text-sm text-foreground/70 hover:bg-muted">Maklon</a>
+              <a href="#proses" onClick={() => setIsOpen(false)} className="px-4 py-2 rounded-md font-body text-sm text-foreground/70 hover:bg-muted">Proses</a>
               <a href="#kontak" onClick={() => setIsOpen(false)} className="px-4 py-2 rounded-md font-body text-sm text-foreground/70 hover:bg-muted">Kontak</a>
               <div className="px-4 pt-2">
                 <a href={getWhatsAppLink()} target="_blank" rel="noopener noreferrer">
-                  <Button variant="whatsapp" className="w-full">Hubungi Kami</Button>
+                  <Button variant="whatsapp" className="w-full">WhatsApp</Button>
                 </a>
               </div>
             </div>

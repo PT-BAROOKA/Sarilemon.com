@@ -1,25 +1,30 @@
-import { Store, Building2, Users, ShoppingBag } from "lucide-react";
+import { ShoppingCart, Stethoscope, UtensilsCrossed, Sparkles, FlaskConical } from "lucide-react";
 
 const buyers = [
   {
-    icon: Store,
-    title: "Reseller & Dropshipper",
-    desc: "Harga khusus grosir untuk reseller dan dropshipper di seluruh Indonesia."
+    icon: ShoppingCart,
+    title: "Toko E-commerce",
+    desc: "Shopee, Tokopedia, dan marketplace lainnya"
   },
   {
-    icon: Building2,
-    title: "Bisnis F&B",
-    desc: "Pasokan curah untuk restoran, kafe, catering, dan industri makanan & minuman."
+    icon: Stethoscope,
+    title: "Distributor Kesehatan",
+    desc: "Produk herbal dan suplemen kesehatan"
   },
   {
-    icon: Users,
-    title: "Konsumen Langsung",
-    desc: "Pembelian eceran untuk kebutuhan kesehatan dan kecantikan pribadi."
+    icon: UtensilsCrossed,
+    title: "Industri HORECA",
+    desc: "Hotel, restoran, dan katering"
   },
   {
-    icon: ShoppingBag,
-    title: "Toko & Distributor",
-    desc: "Kerjasama distribusi dengan harga khusus dan minimum order fleksibel."
+    icon: Sparkles,
+    title: "Brand Beauty & Wellness",
+    desc: "Skincare dan produk perawatan"
+  },
+  {
+    icon: FlaskConical,
+    title: "UMKM Minuman Sehat",
+    desc: "Minuman herbal dan jus sehat lainnya"
   }
 ];
 
@@ -28,22 +33,23 @@ const BuyersSection = () => {
     <section className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-14">
-          <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">
-            Siapa yang Bisa <span className="text-primary">Membeli</span>?
+          <span className="font-body text-sm font-semibold text-primary uppercase tracking-wider">SEGMENTASI PEMBELI</span>
+          <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mt-2 mb-4">
+            Cocok untuk <span className="text-primary">Berbagai Industri</span>
           </h2>
           <p className="font-body text-muted-foreground max-w-2xl mx-auto">
-            Kami melayani berbagai segmen pelanggan — dari konsumen pribadi hingga perusahaan besar
+            Kami melayani berbagai segmen bisnis dengan kebutuhan sari lemon berkualitas
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
           {buyers.map((b, i) => (
             <div key={i} className="text-center p-6 rounded-xl bg-card border border-border hover:shadow-elegant transition-all duration-300">
-              <div className="w-14 h-14 rounded-2xl gradient-lemon flex items-center justify-center mx-auto mb-4">
+              <div className="w-14 h-14 rounded-2xl bg-muted flex items-center justify-center mx-auto mb-4">
                 <b.icon className="w-7 h-7 text-foreground" />
               </div>
-              <h3 className="text-lg font-display font-semibold text-foreground mb-2">{b.title}</h3>
-              <p className="font-body text-sm text-muted-foreground">{b.desc}</p>
+              <h3 className="text-sm font-display font-bold text-foreground mb-1">{b.title}</h3>
+              <p className="font-body text-xs text-muted-foreground">{b.desc}</p>
             </div>
           ))}
         </div>
