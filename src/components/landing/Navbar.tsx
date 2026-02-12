@@ -54,6 +54,9 @@ const Navbar = () => {
             <a href="#kontak" className="font-body text-sm font-medium text-foreground/70 hover:text-primary transition-colors">
               Kontak
             </a>
+            <Link to="/blog" className="font-body text-sm font-medium text-foreground/70 hover:text-primary transition-colors">
+              Blog
+            </Link>
             <a
               href={getWhatsAppLink()}
               target="_blank"
@@ -89,6 +92,7 @@ const Navbar = () => {
               <a href="#maklon" onClick={() => setIsOpen(false)} className="px-4 py-2 rounded-md font-body text-sm text-foreground/70 hover:bg-muted">Maklon</a>
               <a href="#proses" onClick={() => setIsOpen(false)} className="px-4 py-2 rounded-md font-body text-sm text-foreground/70 hover:bg-muted">Proses</a>
               <a href="#kontak" onClick={() => setIsOpen(false)} className="px-4 py-2 rounded-md font-body text-sm text-foreground/70 hover:bg-muted">Kontak</a>
+              <Link to="/blog" onClick={() => setIsOpen(false)} className="px-4 py-2 rounded-md font-body text-sm text-foreground/70 hover:bg-muted">Blog</Link>
               <div className="px-4 pt-2">
                 <a href={getWhatsAppLink()} target="_blank" rel="noopener noreferrer">
                   <Button variant="whatsapp" className="w-full">WhatsApp</Button>

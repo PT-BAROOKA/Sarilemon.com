@@ -34,6 +34,7 @@ const Footer = () => {
               <a href="#maklon" className="block font-body text-sm text-primary-foreground/70 hover:text-accent transition-colors">Maklon</a>
               <a href="#proses" className="block font-body text-sm text-primary-foreground/70 hover:text-accent transition-colors">Proses</a>
               <a href="#kontak" className="block font-body text-sm text-primary-foreground/70 hover:text-accent transition-colors">Kontak</a>
+              <Link to="/blog" className="block font-body text-sm text-primary-foreground/70 hover:text-accent transition-colors">Blog</Link>
             </div>
           </div>
 
