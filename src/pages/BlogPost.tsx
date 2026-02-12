@@ -125,7 +125,7 @@ const BlogPostPage = () => {
   return (
     <HelmetProvider>
       <Helmet>
-        <title>{post.meta_title || post.title} — Sarilemon.id</title>
+        <title>{post.meta_title || post.title} — SariLemon.com</title>
         <meta name="description" content={post.meta_description || post.excerpt} />
         {post.keywords?.length > 0 && <meta name="keywords" content={post.keywords.join(", ")} />}
         <meta property="og:title" content={post.meta_title || post.title} />
@@ -213,7 +213,7 @@ const BlogPostPage = () => {
               {/* WhatsApp CTA */}
               <div className="mt-12 p-6 rounded-xl bg-primary/5 border border-primary/20 text-center">
                 <p className="font-display text-xl font-semibold text-foreground mb-2">
-                  Tertarik dengan produk Sarilemon?
+                  Tertarik dengan produk SariLemon?
                 </p>
                 <p className="font-body text-sm text-muted-foreground mb-4">
                   Hubungi kami untuk informasi harga, MOQ, dan pemesanan.

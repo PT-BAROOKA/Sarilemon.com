@@ -15,7 +15,7 @@ const ContactSection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const message = `Halo Sarilemon.id, saya ingin request price list.\n\nNama: ${formData.name}\nEmail: ${formData.email}\nWhatsApp: ${formData.whatsapp}\nKebutuhan: ${formData.kebutuhan}\nVolume: ${formData.volume}\nKota Tujuan: ${formData.kota}`;
+    const message = `Halo SariLemon.com, saya ingin request price list.\n\nNama: ${formData.name}\nEmail: ${formData.email}\nWhatsApp: ${formData.whatsapp}\nKebutuhan: ${formData.kebutuhan}\nVolume: ${formData.volume}\nKota Tujuan: ${formData.kota}`;
     window.open(getWhatsAppLink(message), "_blank");
   };
 
@@ -148,7 +148,7 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <p className="font-display text-base font-bold text-foreground">Email</p>
-                    <p className="font-body text-sm text-muted-foreground">info@sarilemon.id</p>
+                    <p className="font-body text-sm text-muted-foreground">info@sarilemon.com</p>
                   </div>
                 </div>
               </div>

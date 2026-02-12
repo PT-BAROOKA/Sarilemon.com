@@ -93,7 +93,7 @@ serve(async (req) => {
         messages: [
           {
             role: "system",
-            content: `Kamu adalah penulis blog profesional untuk Sarilemon.id, supplier sari lemon dan produk kesehatan alami dari PT Barooka Global Indonesia. Tulis artikel SEO-friendly dalam bahasa Indonesia yang informatif dan menarik. Format output sebagai JSON dengan struktur:
+            content: `Kamu adalah penulis blog profesional untuk SariLemon.com, supplier sari lemon dan produk kesehatan alami dari PT Barooka Global Indonesia. Tulis artikel SEO-friendly dalam bahasa Indonesia yang informatif dan menarik. Format output sebagai JSON dengan struktur:
 {
   "title": "judul artikel menarik",
   "excerpt": "ringkasan 2-3 kalimat",
@@ -103,7 +103,7 @@ serve(async (req) => {
   "keywords": ["keyword1", "keyword2", "keyword3", "keyword4", "keyword5"],
   "tags": ["tag1", "tag2", "tag3"]
 }
-Pastikan konten minimal 800 kata, informatif, dan menyebutkan produk Sarilemon.id secara natural.`,
+Pastikan konten minimal 800 kata, informatif, dan menyebutkan produk SariLemon.com secara natural.`,
           },
           {
             role: "user",

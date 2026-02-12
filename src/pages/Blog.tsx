@@ -61,8 +61,8 @@ const Blog = () => {
   return (
     <HelmetProvider>
       <Helmet>
-        <title>Blog — Sarilemon.id | Tips Kesehatan & Produk Alami</title>
-        <meta name="description" content="Baca artikel terbaru seputar manfaat sari lemon, tips kesehatan, diet alami, dan produk kesehatan dari Sarilemon.id" />
+        <title>Blog — SariLemon.com | Tips Kesehatan & Produk Alami</title>
+        <meta name="description" content="Baca artikel terbaru seputar manfaat sari lemon, tips kesehatan, diet alami, dan produk kesehatan dari SariLemon.com" />
       </Helmet>
       <div className="min-h-screen">
         <Navbar />
@@ -71,7 +71,7 @@ const Blog = () => {
             {/* Header */}
             <div className="text-center mb-12">
               <h1 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
-                Blog <span className="text-primary">Sarilemon</span>
+                Blog <span className="text-primary">SariLemon</span>
               </h1>
               <p className="font-body text-lg text-muted-foreground max-w-2xl mx-auto">
                 Tips kesehatan, manfaat sari lemon, resep minuman sehat, dan informasi produk alami terbaru.
