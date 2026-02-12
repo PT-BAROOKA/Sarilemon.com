@@ -7,12 +7,7 @@ const HeroSection = () => {
     <section id="beranda" className="relative min-h-[90vh] flex items-center overflow-hidden">
       {/* Background image */}
       <div className="absolute inset-0">
-        <img
-          src={heroImage}
-          alt="Kebun lemon segar di Malang"
-          className="w-full h-full object-cover"
-          loading="eager"
-        />
+        <img src={heroImage} alt="Kebun lemon segar di Malang" className="w-full h-full object-cover" loading="eager" />
         <div className="absolute inset-0 gradient-hero" />
       </div>
 
@@ -27,9 +22,16 @@ const HeroSection = () => {
             Sari Lemon Murni
             <span className="block text-accent">untuk Hidup Lebih Sehat</span>
           </h1>
-          <p className="text-lg md:text-xl font-body text-primary-foreground/85 mb-8 max-w-lg animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
-            Produk alami berkualitas tinggi dari PT Barooka Global Indonesia. Tersedia eceran, grosir, hingga curah untuk kebutuhan bisnis Anda.
+          <p
+            className="text-lg md:text-xl font-body text-primary-foreground/85 mb-8 max-w-lg animate-fade-in-up"
+            style={{ animationDelay: "0.2s" }}
+          >
+            Produk alami berkualitas tinggi dari PT Barooka Global Indonesia. Tersedia eceran, grosir, hingga curah
+            untuk kebutuhan bisnis Anda.
           </p>
+          <span className="font-body text-sm font-medium text-primary-foreground/90">
+            🍋 Update Harga Rp. 30.000/liter Miniman Pembelian / MOQ 20L
+          </span>
           <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
             <a href="#produk">
               <Button variant="accent" size="lg" className="text-base px-8">
