@@ -217,7 +217,7 @@ export const products: ProductData[] = [
   }
 ];
 
-export const WHATSAPP_NUMBER = "6281234567890";
-export const WHATSAPP_MESSAGE = "Halo Sarilemon.id, saya tertarik dengan produk Anda. Bisa minta info lebih lanjut?";
+export const WHATSAPP_NUMBER = "6285647486700";
+export const WHATSAPP_MESSAGE = "Halo Sarilemon.id, saya tertarik dengan produk Sarilemon. Bisa minta info lebih lanjut?";
 export const getWhatsAppLink = (message?: string) =>
   `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message || WHATSAPP_MESSAGE)}`;
