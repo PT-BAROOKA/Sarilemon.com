@@ -15,30 +15,33 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
-            <img src={barookaLogo} alt="Barooka" className="h-10 w-auto" />
+            <img src={barookaLogo} alt="Barooka" className="h-14 md:h-16 w-auto" />
           </Link>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
             <div
-              className="relative"
+              className="relative pb-2 -mb-2"
               onMouseEnter={() => setShowProducts(true)}
               onMouseLeave={() => setShowProducts(false)}
             >
               <button className="flex items-center gap-1 font-body text-sm font-medium text-foreground/70 hover:text-primary transition-colors">
-                Produk <ChevronDown className="w-3 h-3" />
+                Produk <ChevronDown className={`w-3 h-3 transition-transform ${showProducts ? 'rotate-180' : ''}`} />
               </button>
               {showProducts && (
-                <div className="absolute top-full left-0 mt-2 w-56 bg-background rounded-lg shadow-elegant border border-border p-2 animate-fade-in">
-                  {products.map((p) => (
-                    <Link
-                      key={p.slug}
-                      to={`/produk/${p.slug}`}
-                      className="block px-4 py-2 rounded-md text-sm font-body text-foreground/70 hover:bg-muted hover:text-primary transition-colors"
-                    >
-                      {p.name}
-                    </Link>
-                  ))}
+                <div className="absolute top-full left-0 pt-2 z-50">
+                  <div className="w-56 bg-background rounded-lg shadow-lg border border-border p-2 animate-fade-in">
+                    {products.map((p) => (
+                      <Link
+                        key={p.slug}
+                        to={`/produk/${p.slug}`}
+                        onClick={() => setShowProducts(false)}
+                        className="block px-4 py-2 rounded-md text-sm font-body text-foreground/70 hover:bg-muted hover:text-primary transition-colors"
+                      >
+                        {p.name}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
