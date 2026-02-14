@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { HelmetProvider, Helmet } from "react-helmet-async";
 import { Calendar, Clock, Tag, ArrowLeft, Share2 } from "lucide-react";
 import DOMPurify from "dompurify";
-import { supabase } from "@/integrations/supabase/client";
+import { externalSupabase } from "@/integrations/supabase/externalClient";
 import { getWhatsAppLink } from "@/data/products";
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
@@ -57,7 +57,7 @@ const BlogPostPage = () => {
 
   const fetchPost = async (slug: string) => {
     setLoading(true);
-    const { data, error } = await supabase
+    const { data, error } = await externalSupabase
       .from("lemon_blog_posts")
       .select("*")
       .eq("slug", slug)
@@ -67,7 +67,7 @@ const BlogPostPage = () => {
     if (!error && data) {
       setPost(data as BlogPostData);
       // Fetch related posts
-      const { data: relatedData } = await supabase
+      const { data: relatedData } = await externalSupabase
         .from("lemon_blog_posts")
         .select("id, title, slug, excerpt, featured_image_url, published_at")
         .eq("status", "published")
@@ -132,7 +132,7 @@ const BlogPostPage = () => {
         <meta property="og:description" content={post.meta_description || post.excerpt} />
         {post.og_image_url && <meta property="og:image" content={post.og_image_url} />}
         <meta property="og:type" content="article" />
-        <link rel="canonical" href={`https://sarilemon-template-kit.lovable.app/blog/${post.slug}`} />
+        <link rel="canonical" href={`https://sarilemon.com/blog/${post.slug}`} />
       </Helmet>
       <div className="min-h-screen">
         <Navbar />
