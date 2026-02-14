@@ -7,16 +7,11 @@ const corsHeaders = {
 };
 
 const PRODUCT_IMAGES = [
-  "https://images.unsplash.com/photo-1590502593747-42a996133562?w=1200&h=630&fit=crop",
-  "https://images.unsplash.com/photo-1582979512210-99b6a53386f9?w=1200&h=630&fit=crop",
-  "https://images.unsplash.com/photo-1587486913049-53fc88980cfc?w=1200&h=630&fit=crop",
-  "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=1200&h=630&fit=crop",
-  "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=1200&h=630&fit=crop",
-  "https://images.unsplash.com/photo-1526318896980-cf78c088247c?w=1200&h=630&fit=crop",
-  "https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?w=1200&h=630&fit=crop",
-  "https://images.unsplash.com/photo-1557800636-894a64c1696f?w=1200&h=630&fit=crop",
-  "https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=1200&h=630&fit=crop",
-  "https://images.unsplash.com/photo-1596181256180-0092e47389d8?w=1200&h=630&fit=crop",
+  "/images/blog-lemon-1.png",
+  "/images/blog-lemon-2.png",
+  "/images/blog-lemon-3.png",
+  "/images/blog-product-1.png",
+  "/images/blog-product-2.png",
 ];
 
 const TOPICS = [
