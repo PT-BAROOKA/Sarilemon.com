@@ -20,21 +20,21 @@ const PRODUCT_IMAGES = [
 ];
 
 const TOPICS = [
-  "manfaat sari lemon untuk kesehatan dan kecantikan",
-  "cara membuat detox water dengan sari lemon",
-  "tips diet sehat dengan sari lemon alami",
-  "manfaat cuka apel untuk pencernaan dan metabolisme",
-  "chia seed sebagai superfood untuk menurunkan berat badan",
-  "garam himalaya vs garam biasa: mana yang lebih sehat",
-  "resep minuman sehat dengan sari jeruk nipis",
-  "manfaat vitamin C dari lemon untuk imunitas tubuh",
-  "cara memilih sari lemon berkualitas tinggi",
-  "peluang bisnis reseller sari lemon dan produk kesehatan",
-  "manfaat lemon untuk kulit wajah cerah alami",
-  "tips memulai gaya hidup sehat dengan produk alami",
-  "keunggulan produk sari buah tanpa pengawet",
-  "jasa maklon minuman kesehatan untuk brand Anda",
-  "tren minuman kesehatan 2025 di Indonesia",
+  "manfaat minum sari lemon murni setiap pagi untuk kesehatan tubuh",
+  "cara detox tubuh alami dengan sari lemon murni SariLemon",
+  "tips diet sehat dengan sari lemon murni tanpa gula tambahan",
+  "manfaat sari lemon untuk meningkatkan imunitas dan daya tahan tubuh",
+  "sari lemon murni vs air lemon biasa: apa bedanya dan mana lebih efektif",
+  "resep minuman segar dengan sari lemon murni untuk sehari-hari",
+  "manfaat vitamin C alami dari sari lemon untuk kulit cerah dan sehat",
+  "cara memilih sari lemon murni berkualitas tinggi tanpa pengawet",
+  "peluang bisnis reseller sari lemon murni SariLemon yang menguntungkan",
+  "manfaat sari lemon untuk pencernaan dan metabolisme tubuh",
+  "sari lemon murni untuk menurunkan berat badan secara alami",
+  "keunggulan sari lemon cold-pressed dibanding sari lemon biasa",
+  "manfaat rutin minum sari lemon murni untuk kesehatan jantung",
+  "sari lemon murni sebagai antioksidan alami penangkal radikal bebas",
+  "tips mengonsumsi sari lemon murni yang benar untuk hasil maksimal",
 ];
 
 function slugify(text: string): string {
@@ -93,17 +93,21 @@ serve(async (req) => {
         messages: [
           {
             role: "system",
-            content: `Kamu adalah penulis blog profesional untuk SariLemon.com, supplier sari lemon dan produk kesehatan alami dari PT Barooka Global Indonesia. Tulis artikel SEO-friendly dalam bahasa Indonesia yang informatif dan menarik. Format output sebagai JSON dengan struktur:
+            content: `Kamu adalah penulis blog profesional untuk SariLemon.com, produsen dan supplier sari lemon murni 100% asli tanpa pengawet dari PT Barooka Global Indonesia. 
+
+PENTING: Setiap artikel HARUS fokus pada topik sari lemon murni. JANGAN menulis tentang produk lain seperti chia seed, cuka apel, garam himalaya, atau produk kesehatan lainnya yang bukan sari lemon. Semua konten harus relevan dengan sari lemon murni dan manfaatnya.
+
+Tulis artikel SEO-friendly dalam bahasa Indonesia yang informatif dan menarik. Format output sebagai JSON dengan struktur:
 {
-  "title": "judul artikel menarik",
-  "excerpt": "ringkasan 2-3 kalimat",
+  "title": "judul artikel menarik tentang sari lemon",
+  "excerpt": "ringkasan 2-3 kalimat tentang sari lemon",
   "content_html": "konten artikel lengkap dalam HTML (gunakan h2, h3, p, ul, li, strong, em, blockquote)",
   "meta_title": "judul SEO max 60 karakter",
   "meta_description": "deskripsi meta max 160 karakter",
   "keywords": ["keyword1", "keyword2", "keyword3", "keyword4", "keyword5"],
   "tags": ["tag1", "tag2", "tag3"]
 }
-Pastikan konten minimal 800 kata, informatif, dan menyebutkan produk SariLemon.com secara natural.`,
+Pastikan konten minimal 800 kata, informatif, dan selalu menyebutkan produk sari lemon murni SariLemon.com secara natural sebagai solusi terbaik.`,
           },
           {
             role: "user",
