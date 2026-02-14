@@ -20,7 +20,7 @@ const MaklonSection = () => {
           <div>
             <span className="font-body text-sm font-semibold text-primary uppercase tracking-wider">JASA MAKLON</span>
             <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mt-2 mb-6">
-              Bangun Brand Sari Lemon{" "}
+              Bangun Brand <span className="text-lemon-gold">Sari Lemon</span>{" "}
               <span className="text-primary">Kamu Sendiri</span>
             </h2>
             <p className="font-body text-muted-foreground mb-8 leading-relaxed">

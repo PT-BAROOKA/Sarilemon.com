@@ -29,7 +29,7 @@ const WhyUsSection = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-14">
           <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">
-            Mengapa <span className="text-primary">SariLemon.com</span>?
+            Mengapa <span className="text-lemon-gold">SariLemon.com</span>?
           </h2>
           <p className="font-body text-muted-foreground max-w-2xl mx-auto">
             Kualitas premium dengan komitmen pada keaslian dan keberlanjutan produk
