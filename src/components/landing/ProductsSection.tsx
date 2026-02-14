@@ -39,8 +39,8 @@ const ProductsSection = () => {
               <div>
                 <span className="font-body text-sm font-semibold text-primary uppercase tracking-wider">PRODUK GROSIR & CURAH</span>
                 <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mt-2 mb-4">
-                  Sari Lemon Murni untuk{" "}
-                  <span className="text-primary">Kebutuhan Bisnis</span>
+                   <span className="text-lemon-gold">Sari Lemon</span> Murni untuk{" "}
+                   <span className="text-primary">Kebutuhan Bisnis</span>
                 </h2>
                 <p className="font-body text-muted-foreground mb-8 leading-relaxed">
                   Warna keemasan alami, aroma segar khas lemon. Diproduksi dengan standar tinggi untuk kualitas konsisten setiap batch.
