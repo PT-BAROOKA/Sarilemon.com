@@ -14,7 +14,7 @@ const Footer = () => {
               Sari<span className="text-accent">Lemon</span>.com
             </h3>
             <p className="font-body text-sm text-primary-foreground/70 leading-relaxed">
-              Supplier sari lemon dan jasa maklon terpercaya. 100% alami dari lemon Malang berkualitas tinggi.
+              Supplier sari lemon dan jasa maklon terpercaya. 100% alami dari lemon Jawa Barat berkualitas tinggi.
             </p>
           </div>
 

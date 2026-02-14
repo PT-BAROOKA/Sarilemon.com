@@ -7,7 +7,7 @@ const HeroSection = () => {
     <section id="beranda" className="relative min-h-[90vh] flex items-center overflow-hidden">
       {/* Background image */}
       <div className="absolute inset-0">
-        <img src={heroImage} alt="Kebun lemon segar di Malang" className="w-full h-full object-cover" loading="eager" />
+        <img src={heroImage} alt="Kebun lemon segar di Jawa Barat" className="w-full h-full object-cover" loading="eager" />
         <div className="absolute inset-0 gradient-hero" />
       </div>
 
@@ -15,7 +15,7 @@ const HeroSection = () => {
         <div className="max-w-2xl">
           <div className="inline-block px-4 py-1.5 rounded-full bg-accent/20 border border-accent/30 mb-6 animate-fade-in">
             <span className="font-body text-sm font-medium text-primary-foreground/90">
-              🍋 100% Alami dari Malang, Jawa Timur
+              🍋 100% Alami dari Jawa Barat
             </span>
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-primary-foreground leading-tight mb-6 animate-fade-in-up">
