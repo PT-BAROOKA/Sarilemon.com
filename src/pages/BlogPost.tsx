@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { HelmetProvider, Helmet } from "react-helmet-async";
 import { Calendar, Clock, Tag, ArrowLeft, Share2 } from "lucide-react";
 import DOMPurify from "dompurify";
-import { externalSupabase } from "@/integrations/supabase/externalClient";
+import { supabase } from "@/integrations/supabase/client";
 import { getWhatsAppLink } from "@/data/products";
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
@@ -57,7 +57,7 @@ const BlogPostPage = () => {
 
   const fetchPost = async (slug: string) => {
     setLoading(true);
-    const { data, error } = await externalSupabase
+    const { data, error } = await supabase
       .from("lemon_blog_posts")
       .select("*")
       .eq("slug", slug)
@@ -67,7 +67,7 @@ const BlogPostPage = () => {
     if (!error && data) {
       setPost(data as BlogPostData);
       // Fetch related posts
-      const { data: relatedData } = await externalSupabase
+      const { data: relatedData } = await supabase
         .from("lemon_blog_posts")
         .select("id, title, slug, excerpt, featured_image_url, published_at")
         .eq("status", "published")
