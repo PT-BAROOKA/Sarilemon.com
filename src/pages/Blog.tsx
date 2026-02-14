@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { HelmetProvider, Helmet } from "react-helmet-async";
 import { Calendar, Clock, Tag } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { externalSupabase } from "@/integrations/supabase/externalClient";
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
 import FloatingWhatsApp from "@/components/landing/FloatingWhatsApp";
@@ -36,7 +36,7 @@ const Blog = () => {
     const from = page * POSTS_PER_PAGE;
     const to = from + POSTS_PER_PAGE - 1;
 
-    const { data, error } = await supabase
+    const { data, error } = await externalSupabase
       .from("lemon_blog_posts")
       .select("id, title, slug, excerpt, featured_image_url, tags, reading_time_minutes, published_at")
       .eq("status", "published")
