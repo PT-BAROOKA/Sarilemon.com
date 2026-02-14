@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { products, WHATSAPP_NUMBER } from "@/data/products";
+import { WHATSAPP_NUMBER } from "@/data/products";
 import barookaLogo from "@/assets/barooka-logo.png";
 
 const Footer = () => {
@@ -21,30 +21,25 @@ const Footer = () => {
           {/* Menu */}
           <div>
             <h4 className="font-display text-lg font-semibold mb-4">Menu</h4>
-            <div className="space-y-2">
-              {products.map((p) => (
-                <Link
-                  key={p.slug}
-                  to={`/produk/${p.slug}`}
-                  className="block font-body text-sm text-primary-foreground/70 hover:text-accent transition-colors"
-                >
-                  {p.name}
-                </Link>
-              ))}
+            <div className="space-y-3">
+              <Link to="/#produk" className="block font-body text-sm text-primary-foreground/70 hover:text-accent transition-colors">Produk</Link>
               <a href="#maklon" className="block font-body text-sm text-primary-foreground/70 hover:text-accent transition-colors">Maklon</a>
               <a href="#proses" className="block font-body text-sm text-primary-foreground/70 hover:text-accent transition-colors">Proses</a>
+              <a href="#testimonial" className="block font-body text-sm text-primary-foreground/70 hover:text-accent transition-colors">Testimoni</a>
               <a href="#kontak" className="block font-body text-sm text-primary-foreground/70 hover:text-accent transition-colors">Kontak</a>
-              <Link to="/blog" className="block font-body text-sm text-primary-foreground/70 hover:text-accent transition-colors">Blog</Link>
             </div>
           </div>
 
           {/* Kontak */}
           <div>
             <h4 className="font-display text-lg font-semibold mb-4">Kontak</h4>
-            <div className="space-y-2 font-body text-sm text-primary-foreground/70">
+            <div className="space-y-1 font-body text-sm text-primary-foreground/70">
               <p className="font-semibold text-primary-foreground">PT Barooka Global Indonesia</p>
-              <p>Tangerang Selatan, Banten</p>
-              <p className="mt-3">{WHATSAPP_NUMBER}</p>
+              <p>AD Premier 9th Floor</p>
+              <p>Jl. TB Simatupang no 5</p>
+              <p>Ragunan, Pasar Minggu</p>
+              <p>South Jakarta 12550</p>
+              <p className="mt-3">085647486700</p>
               <p>info@sarilemon.com</p>
             </div>
           </div>
