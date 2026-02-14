@@ -3,13 +3,13 @@ import { Heart, Users, ShieldCheck, CheckCircle } from "lucide-react";
 const reasons = [
   {
     icon: Heart,
-    title: "100% Lemon Asli Malang",
+    title: "100% Lemon Asli Jawa Barat",
     description: "Bukan essence atau perasa buatan. Dibuat langsung dari buah lemon segar pilihan."
   },
   {
     icon: Users,
     title: "Produksi Petani Lokal",
-    description: "Mendukung petani Malang dengan kemitraan yang adil dan berkelanjutan."
+    description: "Mendukung petani Jawa Barat dengan kemitraan yang adil dan berkelanjutan."
   },
   {
     icon: ShieldCheck,

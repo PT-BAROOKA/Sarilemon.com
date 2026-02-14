@@ -30,7 +30,7 @@ export const products: ProductData[] = [
     name: "Sari Lemon",
     tagline: "Sari lemon murni untuk kesehatan & kecantikan Anda",
     description: "Sari lemon murni 100% tanpa campuran, diproduksi dari lemon pilihan berkualitas tinggi. Kaya vitamin C dan antioksidan alami, cocok untuk diet, detox, perawatan kulit, dan campuran minuman segar.",
-    origin: "Malang, Jawa Timur",
+    origin: "Jawa Barat",
     warehouse: "Tangerang Selatan, Banten",
     category: "Sari Buah",
     benefits: [
@@ -74,8 +74,8 @@ export const products: ProductData[] = [
     slug: "cuka-apel",
     name: "Cuka Apel",
     tagline: "Cuka apel fermentasi alami untuk kesehatan",
-    description: "Cuka apel murni hasil fermentasi alami dari apel pilihan Malang. Mengandung enzim dan probiotik yang baik untuk pencernaan, diet, dan perawatan kulit.",
-    origin: "Malang, Jawa Timur",
+    description: "Cuka apel murni hasil fermentasi alami dari apel pilihan Jawa Barat. Mengandung enzim dan probiotik yang baik untuk pencernaan, diet, dan perawatan kulit.",
+    origin: "Jawa Barat",
     warehouse: "Tangerang Selatan, Banten",
     category: "Cuka Buah",
     benefits: [
@@ -113,7 +113,7 @@ export const products: ProductData[] = [
     name: "Chia Seed",
     tagline: "Superfood kaya serat dan omega-3",
     description: "Chia seed berkualitas tinggi, kaya serat, omega-3, dan protein nabati. Cocok untuk diet sehat, topping smoothie bowl, dan campuran minuman.",
-    origin: "Malang, Jawa Timur",
+    origin: "Jawa Barat",
     warehouse: "Tangerang Selatan, Banten",
     category: "Superfood",
     benefits: [
@@ -149,7 +149,7 @@ export const products: ProductData[] = [
     name: "Garam Himalaya",
     tagline: "Garam pink alami kaya mineral",
     description: "Garam himalaya pink asli, mengandung 84 mineral alami. Alternatif sehat pengganti garam meja biasa untuk masakan dan minuman kesehatan.",
-    origin: "Malang, Jawa Timur",
+    origin: "Jawa Barat",
     warehouse: "Tangerang Selatan, Banten",
     category: "Bumbu Sehat",
     benefits: [
@@ -185,7 +185,7 @@ export const products: ProductData[] = [
     name: "Sari Jeruk Nipis",
     tagline: "Sari jeruk nipis murni segar alami",
     description: "Sari jeruk nipis murni 100% tanpa pengawet, cocok untuk minuman segar, bumbu masakan, dan campuran jamu tradisional.",
-    origin: "Malang, Jawa Timur",
+    origin: "Jawa Barat",
     warehouse: "Tangerang Selatan, Banten",
     category: "Sari Buah",
     benefits: [

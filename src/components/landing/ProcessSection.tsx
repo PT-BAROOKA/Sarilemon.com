@@ -2,7 +2,7 @@ import productionImage from "@/assets/production-lemons.jpg";
 import { Leaf } from "lucide-react";
 
 const steps = [
-  { number: "01", title: "Panen Lemon", desc: "Dipetik langsung dari petani mitra di Malang saat kematangan optimal." },
+  { number: "01", title: "Panen Lemon", desc: "Dipetik langsung dari petani mitra di Jawa Barat saat kematangan optimal." },
   { number: "02", title: "Pencucian & Sortir", desc: "Proses higienis untuk mempersiapkan bahan baku berkualitas." },
   { number: "03", title: "Ekstraksi & Pasteurisasi", desc: "Pemerasan modern dan pasteurisasi untuk kualitas optimal." },
   { number: "04", title: "Filtrasi & Pengemasan", desc: "Penyaringan dan pengemasan sesuai standar keamanan pangan." },
