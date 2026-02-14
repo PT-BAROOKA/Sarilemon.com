@@ -68,7 +68,7 @@ const ProductsSection = () => {
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-3">
-                  <a href={getWhatsAppLink("Halo, saya mau tanya harga grosir sari lemon")} target="_blank" rel="noopener noreferrer">
+                  <a href={getWhatsAppLink("Halo SariLemon.com, saya mau tanya harga grosir sari lemon. Bisa kirimkan price list?")} target="_blank" rel="noopener noreferrer">
                     <Button variant="whatsapp" size="lg">
                       <MessageCircle className="w-4 h-4 mr-2" /> Tanya Harga Grosir
                     </Button>
@@ -126,7 +126,7 @@ const ProductsSection = () => {
                 </p>
               </div>
             </div>
-            <a href={getWhatsAppLink()} target="_blank" rel="noopener noreferrer" className="shrink-0">
+            <a href={getWhatsAppLink("Halo SariLemon.com, saya tertarik dengan produk SariLemon. Bisa minta info lebih lanjut?")} target="_blank" rel="noopener noreferrer" className="shrink-0">
               <Button variant="whatsapp">
                 <MessageCircle className="w-4 h-4 mr-2" /> Hubungi Kami
               </Button>

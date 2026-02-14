@@ -40,7 +40,7 @@ const HeroSection = () => {
                 Lihat Produk
               </Button>
             </a>
-            <a href={getWhatsAppLink()} target="_blank" rel="noopener noreferrer">
+            <a href={getWhatsAppLink("Halo SariLemon.com, saya tertarik dengan produk SariLemon. Bisa minta info lebih lanjut?")} target="_blank" rel="noopener noreferrer">
               <Button variant="hero-outline" size="lg" className="text-base px-8">
                 Hubungi Kami
               </Button>

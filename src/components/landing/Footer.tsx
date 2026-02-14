@@ -22,11 +22,12 @@ const Footer = () => {
           <div>
             <h4 className="font-display text-lg font-semibold mb-4">Menu</h4>
             <div className="space-y-3">
+              <Link to="/" className="block font-body text-sm text-primary-foreground/70 hover:text-accent transition-colors">Beranda</Link>
               <Link to="/#produk" className="block font-body text-sm text-primary-foreground/70 hover:text-accent transition-colors">Produk</Link>
-              <a href="#maklon" className="block font-body text-sm text-primary-foreground/70 hover:text-accent transition-colors">Maklon</a>
-              <a href="#proses" className="block font-body text-sm text-primary-foreground/70 hover:text-accent transition-colors">Proses</a>
-              <a href="#testimonial" className="block font-body text-sm text-primary-foreground/70 hover:text-accent transition-colors">Testimoni</a>
-              <a href="#kontak" className="block font-body text-sm text-primary-foreground/70 hover:text-accent transition-colors">Kontak</a>
+              <Link to="/#maklon" className="block font-body text-sm text-primary-foreground/70 hover:text-accent transition-colors">Maklon</Link>
+              <Link to="/#proses" className="block font-body text-sm text-primary-foreground/70 hover:text-accent transition-colors">Proses</Link>
+              <Link to="/#testimonial" className="block font-body text-sm text-primary-foreground/70 hover:text-accent transition-colors">Testimoni</Link>
+              <Link to="/#kontak" className="block font-body text-sm text-primary-foreground/70 hover:text-accent transition-colors">Kontak</Link>
             </div>
           </div>
 

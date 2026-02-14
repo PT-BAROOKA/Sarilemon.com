@@ -20,6 +20,9 @@ const Navbar = () => {
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
+            <Link to="/" className="font-body text-sm font-medium text-foreground/70 hover:text-primary transition-colors">
+              Beranda
+            </Link>
             <div
               className="relative pb-2 -mb-2"
               onMouseEnter={() => setShowProducts(true)}
@@ -45,15 +48,15 @@ const Navbar = () => {
                 </div>
               )}
             </div>
-            <a href="#maklon" className="font-body text-sm font-medium text-foreground/70 hover:text-primary transition-colors">
+            <Link to="/#maklon" className="font-body text-sm font-medium text-foreground/70 hover:text-primary transition-colors">
               Maklon
-            </a>
-            <a href="#proses" className="font-body text-sm font-medium text-foreground/70 hover:text-primary transition-colors">
+            </Link>
+            <Link to="/#proses" className="font-body text-sm font-medium text-foreground/70 hover:text-primary transition-colors">
               Proses
-            </a>
-            <a href="#kontak" className="font-body text-sm font-medium text-foreground/70 hover:text-primary transition-colors">
+            </Link>
+            <Link to="/#kontak" className="font-body text-sm font-medium text-foreground/70 hover:text-primary transition-colors">
               Kontak
-            </a>
+            </Link>
             <Link to="/blog" className="font-body text-sm font-medium text-foreground/70 hover:text-primary transition-colors">
               Blog
             </Link>
@@ -81,6 +84,7 @@ const Navbar = () => {
         {isOpen && (
           <div className="md:hidden pb-4 animate-fade-in">
             <div className="flex flex-col gap-2">
+              <Link to="/" onClick={() => setIsOpen(false)} className="px-4 py-2 rounded-md font-body text-sm text-foreground/70 hover:bg-muted">Beranda</Link>
               <div className="px-4 py-2">
                 <p className="font-body text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Produk</p>
                 {products.map((p) => (
@@ -89,9 +93,9 @@ const Navbar = () => {
                   </Link>
                 ))}
               </div>
-              <a href="#maklon" onClick={() => setIsOpen(false)} className="px-4 py-2 rounded-md font-body text-sm text-foreground/70 hover:bg-muted">Maklon</a>
-              <a href="#proses" onClick={() => setIsOpen(false)} className="px-4 py-2 rounded-md font-body text-sm text-foreground/70 hover:bg-muted">Proses</a>
-              <a href="#kontak" onClick={() => setIsOpen(false)} className="px-4 py-2 rounded-md font-body text-sm text-foreground/70 hover:bg-muted">Kontak</a>
+              <Link to="/#maklon" onClick={() => setIsOpen(false)} className="px-4 py-2 rounded-md font-body text-sm text-foreground/70 hover:bg-muted">Maklon</Link>
+              <Link to="/#proses" onClick={() => setIsOpen(false)} className="px-4 py-2 rounded-md font-body text-sm text-foreground/70 hover:bg-muted">Proses</Link>
+              <Link to="/#kontak" onClick={() => setIsOpen(false)} className="px-4 py-2 rounded-md font-body text-sm text-foreground/70 hover:bg-muted">Kontak</Link>
               <Link to="/blog" onClick={() => setIsOpen(false)} className="px-4 py-2 rounded-md font-body text-sm text-foreground/70 hover:bg-muted">Blog</Link>
               <div className="px-4 pt-2">
                 <a href={getWhatsAppLink()} target="_blank" rel="noopener noreferrer">

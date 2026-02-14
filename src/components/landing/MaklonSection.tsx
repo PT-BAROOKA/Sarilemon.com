@@ -36,7 +36,7 @@ const MaklonSection = () => {
               ))}
             </div>
 
-            <a href={getWhatsAppLink("Halo, saya tertarik dengan layanan maklon SariLemon.com")} target="_blank" rel="noopener noreferrer">
+            <a href={getWhatsAppLink("Halo SariLemon.com, saya ingin konsultasi maklon sari lemon gratis. Bisa minta info lebih lanjut?")} target="_blank" rel="noopener noreferrer">
               <Button variant="whatsapp" size="lg">
                 <MessageCircle className="w-4 h-4 mr-2" /> Konsultasi Maklon Gratis
               </Button>

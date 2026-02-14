@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Navbar from "@/components/landing/Navbar";
 import HeroSection from "@/components/landing/HeroSection";
 import WhyUsSection from "@/components/landing/WhyUsSection";
@@ -12,6 +14,19 @@ import Footer from "@/components/landing/Footer";
 import FloatingWhatsApp from "@/components/landing/FloatingWhatsApp";
 
 const Index = () => {
+  const { hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) {
+      const el = document.querySelector(hash);
+      if (el) {
+        setTimeout(() => el.scrollIntoView({ behavior: "smooth" }), 100);
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [hash]);
+
   return (
     <div className="min-h-screen">
       <Navbar />
