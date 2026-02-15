@@ -12,6 +12,7 @@ import TestimonialsSection from "@/components/landing/TestimonialsSection";
 import ContactSection from "@/components/landing/ContactSection";
 import Footer from "@/components/landing/Footer";
 import FloatingWhatsApp from "@/components/landing/FloatingWhatsApp";
+import LeadCapturePopup from "@/components/landing/LeadCapturePopup";
 
 const Index = () => {
   const { hash } = useLocation();
@@ -41,6 +42,7 @@ const Index = () => {
       <ContactSection />
       <Footer />
       <FloatingWhatsApp />
+      <LeadCapturePopup />
     </div>
   );
 };
