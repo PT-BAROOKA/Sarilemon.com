@@ -3,11 +3,11 @@ import { products, getWhatsAppLink } from "@/data/products";
 import { Button } from "@/components/ui/button";
 import { Truck, MessageCircle } from "lucide-react";
 import wholesaleImage from "@/assets/wholesale-drums.jpg";
-import imgSariLemon from "@/assets/Sari lemon Icon.png";
-import imgCukaApel from "@/assets/Cuka apel Icon.png";
-import imgChiaSeed from "@/assets/Chia seed Icon.png";
-import imgGaramHimalaya from "@/assets/Garam himalaya Icon.png";
-import imgSariJerukNipis from "@/assets/Sari jeruk nipis icon.png";
+import imgSariLemon from "@/assets/sari-lemon-icon.png";
+import imgCukaApel from "@/assets/cuka-apel-icon.png";
+import imgChiaSeed from "@/assets/chia-seed-icon.png";
+import imgGaramHimalaya from "@/assets/garam-himalaya-icon.png";
+import imgSariJerukNipis from "@/assets/sari-jeruk-nipis-icon.png";
 
 const productImages: Record<string, string> = {
   "sari-lemon": imgSariLemon,
