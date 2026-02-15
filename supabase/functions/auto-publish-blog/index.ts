@@ -6,12 +6,17 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
-const PRODUCT_IMAGES = [
-  "/images/blog-lemon-1.png",
-  "/images/blog-lemon-2.png",
-  "/images/blog-lemon-3.png",
-  "/images/blog-product-1.png",
-  "/images/blog-product-2.png",
+const IMAGE_PROMPTS = [
+  "Fresh whole lemons and sliced lemons on a rustic wooden cutting board with water droplets, bright natural lighting, food photography style, ultra high resolution",
+  "A glass of fresh lemon juice with lemon slices and mint leaves on a clean white table, morning sunlight, minimalist food photography, ultra high resolution",
+  "Beautiful lemon orchard with ripe yellow lemons hanging from green trees, golden hour sunlight, landscape photography, ultra high resolution",
+  "Close-up of freshly squeezed lemon juice being poured into a glass bottle, with whole lemons around it, studio lighting, product photography, ultra high resolution",
+  "A refreshing lemon detox water with cucumber and mint in a glass pitcher, bright kitchen background, healthy lifestyle photography, ultra high resolution",
+  "Basket full of bright yellow lemons with green leaves, Mediterranean style, outdoor market setting, vibrant colors, food photography, ultra high resolution",
+  "Sliced lemons arranged in a beautiful pattern on a marble surface, top-down view, flat lay food photography, ultra high resolution",
+  "Fresh lemon tree branch with blossoms and ripe lemons, bokeh background, nature photography, ultra high resolution",
+  "A healthy morning routine setup with lemon water, honey, and fresh lemons on a wooden tray, cozy lifestyle photography, ultra high resolution",
+  "Cold-pressed lemon juice bottles lined up with fresh lemons and ice, commercial product photography, clean background, ultra high resolution",
 ];
 
 const TOPICS = [
@@ -39,6 +44,77 @@ function slugify(text: string): string {
     .replace(/\s+/g, "-")
     .replace(/-+/g, "-")
     .trim();
+}
+
+async function generateAndUploadImage(
+  supabase: any,
+  prompt: string,
+  slug: string
+): Promise<string | null> {
+  try {
+    const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
+    if (!LOVABLE_API_KEY) {
+      console.warn("LOVABLE_API_KEY not available, skipping image generation");
+      return null;
+    }
+
+    const imageResponse = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${LOVABLE_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        model: "google/gemini-2.5-flash-image",
+        messages: [
+          {
+            role: "user",
+            content: prompt,
+          },
+        ],
+        modalities: ["image", "text"],
+      }),
+    });
+
+    if (!imageResponse.ok) {
+      console.error("Image generation failed:", imageResponse.status);
+      return null;
+    }
+
+    const imageData = await imageResponse.json();
+    const imageUrl = imageData.choices?.[0]?.message?.images?.[0]?.image_url?.url;
+
+    if (!imageUrl) {
+      console.error("No image in AI response");
+      return null;
+    }
+
+    // Extract base64 data and upload to storage
+    const base64Data = imageUrl.replace(/^data:image\/\w+;base64,/, "");
+    const binaryData = Uint8Array.from(atob(base64Data), (c) => c.charCodeAt(0));
+
+    const fileName = `${slug}-${Date.now()}.png`;
+    const { error: uploadError } = await supabase.storage
+      .from("blog-images")
+      .upload(fileName, binaryData, {
+        contentType: "image/png",
+        upsert: false,
+      });
+
+    if (uploadError) {
+      console.error("Upload error:", uploadError);
+      return null;
+    }
+
+    const { data: publicUrl } = supabase.storage
+      .from("blog-images")
+      .getPublicUrl(fileName);
+
+    return publicUrl.publicUrl;
+  } catch (err) {
+    console.error("Image generation error:", err);
+    return null;
+  }
 }
 
 serve(async (req) => {
@@ -69,13 +145,13 @@ serve(async (req) => {
       );
     }
 
-    // Pick random topic and image
+    // Pick random topic and image prompt
     const topic = TOPICS[Math.floor(Math.random() * TOPICS.length)];
-    const imageIndex = Math.floor(Math.random() * PRODUCT_IMAGES.length);
-    const featuredImage = PRODUCT_IMAGES[imageIndex];
-    const ogImage = PRODUCT_IMAGES[(imageIndex + 1) % PRODUCT_IMAGES.length];
+    const imagePromptIndex = Math.floor(Math.random() * IMAGE_PROMPTS.length);
+    const featuredImagePrompt = IMAGE_PROMPTS[imagePromptIndex];
+    const ogImagePrompt = IMAGE_PROMPTS[(imagePromptIndex + 1) % IMAGE_PROMPTS.length];
 
-    // Generate article via Lovable AI
+    // Generate article via OpenAI
     const aiResponse = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -150,6 +226,20 @@ Pastikan konten minimal 800 kata, informatif, dan selalu menyebutkan produk sari
     const wordCount = article.content_html.replace(/<[^>]*>/g, "").split(/\s+/).length;
     const readingTime = Math.max(1, Math.ceil(wordCount / 200));
 
+    // Generate AI images for the blog post
+    console.log("Generating featured image...");
+    const featuredImageUrl = await generateAndUploadImage(supabase, featuredImagePrompt, slug);
+    console.log("Generating OG image...");
+    const ogImageUrl = await generateAndUploadImage(supabase, ogImagePrompt, slug);
+
+    // Fallback to static images if generation fails
+    const fallbackImages = [
+      "/images/blog-lemon-1.png",
+      "/images/blog-lemon-2.png",
+      "/images/blog-lemon-3.png",
+    ];
+    const fallbackIdx = Math.floor(Math.random() * fallbackImages.length);
+
     // Insert into database
     const { data: post, error: insertError } = await supabase
       .from("lemon_blog_posts")
@@ -162,8 +252,8 @@ Pastikan konten minimal 800 kata, informatif, dan selalu menyebutkan produk sari
         meta_description: article.meta_description,
         keywords: article.keywords,
         tags: article.tags,
-        featured_image_url: featuredImage,
-        og_image_url: ogImage,
+        featured_image_url: featuredImageUrl || fallbackImages[fallbackIdx],
+        og_image_url: ogImageUrl || fallbackImages[(fallbackIdx + 1) % fallbackImages.length],
         word_count: wordCount,
         reading_time_minutes: readingTime,
         status: "published",
