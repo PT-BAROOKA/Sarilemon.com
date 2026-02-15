@@ -1,0 +1,4 @@
+project_id = "xjuncfctptangrqvnrdb"
+
+[functions.auto-publish-blog]
+verify_jwt = false
