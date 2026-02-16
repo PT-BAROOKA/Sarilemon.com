@@ -125,6 +125,7 @@ serve(async (req) => {
   try {
     const OPENAI_API_KEY = Deno.env.get("OPENAI_API_KEY");
     if (!OPENAI_API_KEY) throw new Error("OPENAI_API_KEY is not configured");
+
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
     const supabase = createClient(supabaseUrl, supabaseKey);
@@ -213,8 +214,8 @@ Pastikan konten minimal 800 kata, informatif, dan selalu menyebutkan produk sari
 
     if (!aiResponse.ok) {
       const errorText = await aiResponse.text();
-      console.error("AI gateway error:", aiResponse.status, errorText);
-      throw new Error(`AI gateway error [${aiResponse.status}]: ${errorText}`);
+      console.error("OpenAI API error:", aiResponse.status, errorText);
+      throw new Error(`OpenAI API error [${aiResponse.status}]: ${errorText}`);
     }
 
     const aiData = await aiResponse.json();
