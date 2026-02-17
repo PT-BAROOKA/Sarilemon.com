@@ -16,6 +16,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
             <img src={barookaLogo} alt="Barooka" className="h-14 md:h-16 w-auto" />
+            <span className="font-display text-lg md:text-xl font-bold"><span className="text-primary">Sari</span> <span className="text-lemon-gold">Lemon</span></span>
           </Link>
 
           {/* Desktop Nav */}
