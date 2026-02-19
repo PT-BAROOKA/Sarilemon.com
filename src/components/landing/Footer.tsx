@@ -22,12 +22,42 @@ const Footer = () => {
           <div>
             <h4 className="font-display text-lg font-semibold mb-4">Menu</h4>
             <div className="space-y-3">
-              <Link to="/" className="block font-body text-sm text-primary-foreground/70 hover:text-accent transition-colors">Beranda</Link>
-              <Link to="/#produk" className="block font-body text-sm text-primary-foreground/70 hover:text-accent transition-colors">Produk</Link>
-              <Link to="/#maklon" className="block font-body text-sm text-primary-foreground/70 hover:text-accent transition-colors">Maklon</Link>
-              <Link to="/#proses" className="block font-body text-sm text-primary-foreground/70 hover:text-accent transition-colors">Proses</Link>
-              <Link to="/#testimonial" className="block font-body text-sm text-primary-foreground/70 hover:text-accent transition-colors">Testimoni</Link>
-              <Link to="/#kontak" className="block font-body text-sm text-primary-foreground/70 hover:text-accent transition-colors">Kontak</Link>
+              <Link
+                to="/"
+                className="block font-body text-sm text-primary-foreground/70 hover:text-accent transition-colors"
+              >
+                Beranda
+              </Link>
+              <Link
+                to="/#produk"
+                className="block font-body text-sm text-primary-foreground/70 hover:text-accent transition-colors"
+              >
+                Produk
+              </Link>
+              <Link
+                to="/#maklon"
+                className="block font-body text-sm text-primary-foreground/70 hover:text-accent transition-colors"
+              >
+                Maklon
+              </Link>
+              <Link
+                to="/#proses"
+                className="block font-body text-sm text-primary-foreground/70 hover:text-accent transition-colors"
+              >
+                Proses
+              </Link>
+              <Link
+                to="/#testimonial"
+                className="block font-body text-sm text-primary-foreground/70 hover:text-accent transition-colors"
+              >
+                Testimoni
+              </Link>
+              <Link
+                to="/#kontak"
+                className="block font-body text-sm text-primary-foreground/70 hover:text-accent transition-colors"
+              >
+                Kontak
+              </Link>
             </div>
           </div>
 
@@ -36,10 +66,7 @@ const Footer = () => {
             <h4 className="font-display text-lg font-semibold mb-4">Kontak</h4>
             <div className="space-y-1 font-body text-sm text-primary-foreground/70">
               <p className="font-semibold text-primary-foreground">PT Barooka Global Indonesia</p>
-              <p>AD Premier 9th Floor</p>
-              <p>Jl. TB Simatupang no 5</p>
-              <p>Ragunan, Pasar Minggu</p>
-              <p>South Jakarta 12550</p>
+              <p>Tangerang Selatan</p>
               <p className="mt-3">085647486700</p>
               <p>info@sarilemon.com</p>
             </div>
@@ -50,9 +77,7 @@ const Footer = () => {
           <p className="font-body text-xs text-primary-foreground/50">
             © {new Date().getFullYear()} SariLemon.com — PT Barooka Global Indonesia. All rights reserved.
           </p>
-          <p className="font-body text-xs text-primary-foreground/40">
-            Supplier Sari Lemon Grosir & Maklon Terpercaya
-          </p>
+          <p className="font-body text-xs text-primary-foreground/40">Supplier Sari Lemon Grosir & Maklon Terpercaya</p>
         </div>
       </div>
     </footer>
