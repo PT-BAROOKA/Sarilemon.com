@@ -52,46 +52,43 @@ async function generateAndUploadImage(
   slug: string
 ): Promise<string | null> {
   try {
-    const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
-    if (!LOVABLE_API_KEY) {
-      console.warn("LOVABLE_API_KEY not available, skipping image generation");
+    const OPENAI_API_KEY = Deno.env.get("OPENAI_API_KEY");
+    if (!OPENAI_API_KEY) {
+      console.warn("OPENAI_API_KEY not available, skipping image generation");
       return null;
     }
 
-    const imageResponse = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
+    const imageResponse = await fetch("https://api.openai.com/v1/images/generations", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${LOVABLE_API_KEY}`,
+        Authorization: `Bearer ${OPENAI_API_KEY}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "google/gemini-2.5-flash-image",
-        messages: [
-          {
-            role: "user",
-            content: prompt,
-          },
-        ],
-        modalities: ["image", "text"],
+        model: "dall-e-3",
+        prompt: prompt,
+        n: 1,
+        size: "1792x1024",
+        quality: "standard",
+        response_format: "b64_json",
       }),
     });
 
     if (!imageResponse.ok) {
-      console.error("Image generation failed:", imageResponse.status);
+      const errText = await imageResponse.text();
+      console.error("OpenAI image generation failed:", imageResponse.status, errText);
       return null;
     }
 
     const imageData = await imageResponse.json();
-    const imageUrl = imageData.choices?.[0]?.message?.images?.[0]?.image_url?.url;
+    const b64 = imageData.data?.[0]?.b64_json;
 
-    if (!imageUrl) {
-      console.error("No image in AI response");
+    if (!b64) {
+      console.error("No image in OpenAI response");
       return null;
     }
 
-    // Extract base64 data and upload to storage
-    const base64Data = imageUrl.replace(/^data:image\/\w+;base64,/, "");
-    const binaryData = Uint8Array.from(atob(base64Data), (c) => c.charCodeAt(0));
+    const binaryData = Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
 
     const fileName = `${slug}-${Date.now()}.png`;
     const { error: uploadError } = await supabase.storage
