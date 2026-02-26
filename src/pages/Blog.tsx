@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { HelmetProvider, Helmet } from "react-helmet-async";
 import { Calendar, Clock, Tag } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { externalSupabase as supabase } from "@/integrations/supabase/externalClient";
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
 import FloatingWhatsApp from "@/components/landing/FloatingWhatsApp";

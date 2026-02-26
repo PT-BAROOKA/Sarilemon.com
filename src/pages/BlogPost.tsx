@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { HelmetProvider, Helmet } from "react-helmet-async";
 import { Calendar, Clock, Tag, ArrowLeft, Share2 } from "lucide-react";
 import DOMPurify from "dompurify";
-import { supabase } from "@/integrations/supabase/client";
+import { externalSupabase as supabase } from "@/integrations/supabase/externalClient";
 import { getWhatsAppLink } from "@/data/products";
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
