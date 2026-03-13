@@ -127,17 +127,17 @@ serve(async (req) => {
     const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
     const supabase = createClient(supabaseUrl, supabaseKey);
 
-    // Check if article already published within last 2 days
-    const twoDaysAgo = new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString();
+    // Check if article already published within last 36 hours (gives daily cron reliable 2-day spacing)
+    const cutoff = new Date(Date.now() - 36 * 60 * 60 * 1000).toISOString();
     const { data: existing } = await supabase
       .from("lemon_blog_posts")
       .select("id")
-      .gte("created_at", twoDaysAgo)
+      .gte("created_at", cutoff)
       .limit(1);
 
     if (existing && existing.length > 0) {
       return new Response(
-        JSON.stringify({ message: "Blog post already published within 2 days", skipped: true }),
+        JSON.stringify({ message: "Blog post already published within 36 hours", skipped: true }),
         { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
