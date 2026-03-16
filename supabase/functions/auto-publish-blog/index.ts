@@ -160,7 +160,7 @@ serve(async (req) => {
         messages: [
           {
             role: "system",
-            content: `Kamu adalah penulis blog profesional untuk SariLemon.com, produsen dan supplier sari lemon murni 100% asli tanpa pengawet dari PT Barooka Global Indonesia. 
+            content: `Kamu adalah penulis blog profesional untuk SariLemon.com, produsen dan supplier sari lemon murni 100% asli tanpa pengawet dari PT Barooka Global Indonesia.
 
 PENTING: Setiap artikel HARUS fokus pada topik sari lemon murni. JANGAN menulis tentang produk lain seperti chia seed, cuka apel, garam himalaya, atau produk kesehatan lainnya yang bukan sari lemon. Semua konten harus relevan dengan sari lemon murni dan manfaatnya.
 
@@ -223,13 +223,7 @@ Pastikan konten minimal 800 kata, informatif, dan selalu menyebutkan produk sari
     const wordCount = article.content_html.replace(/<[^>]*>/g, "").split(/\s+/).length;
     const readingTime = Math.max(1, Math.ceil(wordCount / 200));
 
-    // Generate AI images for the blog post
-    console.log("Generating featured image...");
-    const featuredImageUrl = await generateAndUploadImage(supabase, featuredImagePrompt, slug);
-    console.log("Generating OG image...");
-    const ogImageUrl = await generateAndUploadImage(supabase, ogImagePrompt, slug);
-
-    // Fallback to static images if generation fails
+    // Fallback images
     const fallbackImages = [
       "/images/blog-lemon-1.png",
       "/images/blog-lemon-2.png",
@@ -237,7 +231,8 @@ Pastikan konten minimal 800 kata, informatif, dan selalu menyebutkan produk sari
     ];
     const fallbackIdx = Math.floor(Math.random() * fallbackImages.length);
 
-    // Insert into database
+    // STEP 1: Insert article into database FIRST with fallback images
+    // This guarantees the post is created even if image generation times out
     const { data: post, error: insertError } = await supabase
       .from("lemon_blog_posts")
       .insert({
@@ -249,8 +244,8 @@ Pastikan konten minimal 800 kata, informatif, dan selalu menyebutkan produk sari
         meta_description: article.meta_description,
         keywords: article.keywords,
         tags: article.tags,
-        featured_image_url: featuredImageUrl || fallbackImages[fallbackIdx],
-        og_image_url: ogImageUrl || fallbackImages[(fallbackIdx + 1) % fallbackImages.length],
+        featured_image_url: fallbackImages[fallbackIdx],
+        og_image_url: fallbackImages[(fallbackIdx + 1) % fallbackImages.length],
         word_count: wordCount,
         reading_time_minutes: readingTime,
         status: "published",
@@ -262,7 +257,30 @@ Pastikan konten minimal 800 kata, informatif, dan selalu menyebutkan produk sari
 
     if (insertError) throw insertError;
 
-    console.log("Blog post published:", post.title);
+    console.log("Blog post inserted:", post.title);
+
+    // STEP 2: Try to generate and update images (best-effort, won't break if timeout)
+    try {
+      console.log("Generating featured image...");
+      const featuredImageUrl = await generateAndUploadImage(supabase, featuredImagePrompt, slug);
+      console.log("Generating OG image...");
+      const ogImageUrl = await generateAndUploadImage(supabase, ogImagePrompt, slug);
+
+      if (featuredImageUrl || ogImageUrl) {
+        const updateData: Record<string, string> = {};
+        if (featuredImageUrl) updateData.featured_image_url = featuredImageUrl;
+        if (ogImageUrl) updateData.og_image_url = ogImageUrl;
+
+        await supabase
+          .from("lemon_blog_posts")
+          .update(updateData)
+          .eq("id", post.id);
+
+        console.log("Images updated for post:", post.id);
+      }
+    } catch (imgErr) {
+      console.warn("Image generation failed, post still published with fallback images:", imgErr);
+    }
 
     return new Response(
       JSON.stringify({ success: true, post: { id: post.id, title: post.title, slug: post.slug } }),
