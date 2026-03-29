@@ -8,6 +8,7 @@ import { getWhatsAppLink } from "@/data/products";
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
 import FloatingWhatsApp from "@/components/landing/FloatingWhatsApp";
+import FloatingChatbot from "@/components/landing/FloatingChatbot";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
@@ -266,6 +267,7 @@ const BlogPostPage = () => {
           </div>
         </main>
         <Footer />
+        <FloatingChatbot />
         <FloatingWhatsApp />
       </div>
     </HelmetProvider>

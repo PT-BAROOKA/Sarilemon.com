@@ -6,6 +6,7 @@ import { externalSupabase as supabase } from "@/integrations/supabase/externalCl
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
 import FloatingWhatsApp from "@/components/landing/FloatingWhatsApp";
+import FloatingChatbot from "@/components/landing/FloatingChatbot";
 import { Skeleton } from "@/components/ui/skeleton";
 
 interface BlogPost {
@@ -170,6 +171,7 @@ const Blog = () => {
           </div>
         </main>
         <Footer />
+        <FloatingChatbot />
         <FloatingWhatsApp />
       </div>
     </HelmetProvider>

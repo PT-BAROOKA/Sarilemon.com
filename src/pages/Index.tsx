@@ -13,6 +13,7 @@ import ContactSection from "@/components/landing/ContactSection";
 import Footer from "@/components/landing/Footer";
 import FloatingWhatsApp from "@/components/landing/FloatingWhatsApp";
 import LeadCapturePopup from "@/components/landing/LeadCapturePopup";
+import FloatingChatbot from "@/components/landing/FloatingChatbot";
 
 const Index = () => {
   const { hash } = useLocation();
@@ -41,6 +42,7 @@ const Index = () => {
       <TestimonialsSection />
       <ContactSection />
       <Footer />
+      <FloatingChatbot />
       <FloatingWhatsApp />
       <LeadCapturePopup />
     </div>
