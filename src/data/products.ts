@@ -57,10 +57,10 @@ export const products: ProductData[] = [
       { label: "Masa Simpan", value: "12 bulan (sebelum dibuka)" }
     ],
     pricing: [
-      { type: "Eceran", unit: "Botol 500ml", priceRange: "Hubungi kami" },
-      { type: "Grosir", unit: "Karton (12 botol)", priceRange: "Hubungi kami", minOrder: "5 karton" },
-      { type: "Curah", unit: "Jerigen 5L", priceRange: "Hubungi kami", minOrder: "10 jerigen" },
-      { type: "Curah Besar", unit: "Drum 200L", priceRange: "Hubungi kami", minOrder: "1 drum" }
+      { type: "Eceran", unit: "Botol 250ml / 500ml", priceRange: "Mulai Rp 24.799" },
+      { type: "Curah", unit: "Per Liter (tanpa kemasan)", priceRange: "Rp 33.000 / Liter", minOrder: "1 Liter" },
+      { type: "Packaging Botol", unit: "1 Liter (Botol + Stiker)", priceRange: "Rp 82.000" },
+      { type: "Packaging Jerigen", unit: "5L / 10L / 20L", priceRange: "Mulai Rp 312.875", minOrder: "1 unit" }
     ],
     leadTime: {
       small: "1-3 hari kerja",
@@ -100,9 +100,10 @@ export const products: ProductData[] = [
       { label: "Masa Simpan", value: "24 bulan" }
     ],
     pricing: [
-      { type: "Eceran", unit: "Botol 500ml", priceRange: "Hubungi kami" },
-      { type: "Grosir", unit: "Karton (12 botol)", priceRange: "Hubungi kami", minOrder: "5 karton" },
-      { type: "Curah", unit: "Jerigen 5L", priceRange: "Hubungi kami", minOrder: "10 jerigen" }
+      { type: "Eceran", unit: "Botol 250ml / 500ml", priceRange: "Mulai Rp 53.599" },
+      { type: "Curah", unit: "Per Liter (tanpa kemasan)", priceRange: "Rp 23.250 / Liter", minOrder: "1 Liter" },
+      { type: "Packaging Botol", unit: "1 Liter (Botol + Stiker)", priceRange: "Rp 65.750" },
+      { type: "Packaging Jerigen", unit: "5L / 10L / 20L", priceRange: "Mulai Rp 231.625", minOrder: "1 unit" }
     ],
     leadTime: { small: "1-3 hari kerja", medium: "3-7 hari kerja", large: "7-14 hari kerja" },
     certifications: ["PIRT"],
@@ -208,8 +209,10 @@ export const products: ProductData[] = [
       { label: "Masa Simpan", value: "12 bulan" }
     ],
     pricing: [
-      { type: "Eceran", unit: "Botol 500ml", priceRange: "Hubungi kami" },
-      { type: "Grosir", unit: "Karton (12 botol)", priceRange: "Hubungi kami", minOrder: "5 karton" }
+      { type: "Eceran", unit: "Botol 250ml / 500ml", priceRange: "Mulai Rp 20.800" },
+      { type: "Curah", unit: "Per Liter (tanpa kemasan)", priceRange: "Rp 54.000 / Liter", minOrder: "1 Liter" },
+      { type: "Packaging Botol", unit: "1 Liter (Botol + Stiker)", priceRange: "Rp 117.000" },
+      { type: "Packaging Jerigen", unit: "5L / 10L / 20L", priceRange: "Mulai Rp 487.875", minOrder: "1 unit" }
     ],
     leadTime: { small: "1-3 hari kerja", medium: "3-7 hari kerja", large: "7-14 hari kerja" },
     certifications: ["PIRT"],
