@@ -1,10 +1,14 @@
+import { useRef, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { products, getWhatsAppLink } from "@/data/products";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Check, Package, MapPin, Clock } from "lucide-react";
+import { ArrowLeft, Check, Package, MapPin, Clock, Download } from "lucide-react";
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
 import FloatingWhatsApp from "@/components/landing/FloatingWhatsApp";
+import CatalogTemplate from "@/components/catalog/CatalogTemplate";
+import { catalogData } from "@/data/catalogData";
+import { downloadCatalog } from "@/utils/downloadCatalog";
 import imgSariLemonProduk from "@/assets/sari_lemon_produk.png";
 import imgCukaApelProduk from "@/assets/cuka_apel_produk.png";
 import imgChiaSeedProduk from "@/assets/chia_seed_produk.png";
@@ -22,6 +26,21 @@ const productImages: Record<string, string> = {
 const ProductDetail = () => {
   const { slug } = useParams();
   const product = products.find((p) => p.slug === slug);
+  const catalogRef = useRef<HTMLDivElement>(null);
+  const [downloading, setDownloading] = useState(false);
+
+  const hasCatalog = product ? product.slug in catalogData : false;
+
+  const handleDownload = async () => {
+    if (!catalogRef.current || !product) return;
+    setDownloading(true);
+    try {
+      const filename = `katalog-${product.slug}.pdf`;
+      await downloadCatalog(catalogRef.current, filename);
+    } finally {
+      setDownloading(false);
+    }
+  };
 
   if (!product) {
     return (
@@ -66,9 +85,23 @@ const ProductDetail = () => {
                 </div>
               </div>
 
-              <a href={getWhatsAppLink(`Halo, saya tertarik dengan produk ${product.name}`)} target="_blank" rel="noopener noreferrer">
-                <Button variant="whatsapp" size="lg">Pesan via WhatsApp</Button>
-              </a>
+              <div className="flex flex-wrap gap-3">
+                <a href={getWhatsAppLink(`Halo, saya tertarik dengan produk ${product.name}`)} target="_blank" rel="noopener noreferrer">
+                  <Button variant="whatsapp" size="lg">Pesan via WhatsApp</Button>
+                </a>
+                {hasCatalog && (
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    onClick={handleDownload}
+                    disabled={downloading}
+                    className="border-primary text-primary hover:bg-primary hover:text-primary-foreground gap-2"
+                  >
+                    <Download className="w-4 h-4" />
+                    {downloading ? "Menyiapkan PDF..." : "Download Katalog"}
+                  </Button>
+                )}
+              </div>
             </div>
           </div>
 
@@ -155,6 +188,17 @@ const ProductDetail = () => {
       </div>
       <Footer />
       <FloatingWhatsApp />
+      {hasCatalog && product && (
+        <CatalogTemplate
+          ref={catalogRef}
+          productName={product.name}
+          tagline={product.tagline}
+          category={product.category}
+          description={product.description}
+          productImage={productImages[product.slug]}
+          pricing={catalogData[product.slug]}
+        />
+      )}
     </div>
   );
 };
