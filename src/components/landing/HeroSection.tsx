@@ -31,7 +31,7 @@ const HeroSection = () => {
           </p>
           <div className="inline-block px-5 py-3 rounded-xl bg-accent/30 border-2 border-accent/60 backdrop-blur-sm mb-4 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
             <span className="font-display text-lg md:text-xl font-bold text-accent drop-shadow-md">
-              🍋 Update Harga Rp. 24.500/liter — Min. Pembelian / MOQ 20L
+              🍋 Update Harga Rp. 29.500/liter — Min. Pembelian / MOQ 20L
             </span>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
