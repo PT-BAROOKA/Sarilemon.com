@@ -85,4 +85,53 @@ export const catalogData: Record<string, CatalogPricing> = {
       "Pengiriman ke Seluruh Indonesia",
     ],
   },
+  "chia-seed": {
+    curah: [
+      { volume: "1 Kg", price: "Rp 90.000" },
+      { volume: "5 Kg", price: "Rp 450.000" },
+      { volume: "10 Kg", price: "Rp 900.000" },
+      { volume: "20 Kg", price: "Rp 1.800.000" },
+    ],
+    packaging: [
+      { volume: "1 Kg (Pouch Ziplock + Stiker)", price: "Rp 174.575" },
+      { volume: "5 Kg (Pouch Kopi + Stiker)", price: "Rp 797.375" },
+      { volume: "10 Kg (Pouch Plastik + Stiker)", price: "Rp 1.524.962" },
+      { volume: "20 Kg (Karung Foil + Stiker)", price: "Rp 3.040.000" },
+    ],
+    eceran: [
+      { volume: "250 gr", price: "Rp 25.400" },
+      { volume: "500 gr", price: "Rp 32.600" },
+    ],
+    minOrder: "Min. 1 Kg untuk pembelian curah",
+    highlights: [
+      "100% Chia Seed Murni Tanpa Campuran",
+      "Kaya Serat, Omega-3 & Protein Nabati",
+      "Sertifikasi PIRT",
+      "Layanan Maklon / Private Label Tersedia",
+      "Pengiriman ke Seluruh Indonesia",
+    ],
+  },
+  "garam-himalaya": {
+    curah: [
+      { volume: "1 Kg", price: "Rp 27.750" },
+      { volume: "5 Kg", price: "Rp 138.750" },
+      { volume: "10 Kg", price: "Rp 277.500" },
+      { volume: "20 Kg", price: "Rp 555.000" },
+    ],
+    packaging: [
+      { volume: "1 Kg (Pouch Ziplock + Stiker)", price: "Rp 70.825" },
+      { volume: "5 Kg (Pouch Kopi + Stiker)", price: "Rp 278.625" },
+      { volume: "10 Kg (Pouch Plastik + Stiker)", price: "Rp 487.462" },
+      { volume: "20 Kg (Karung Foil + Stiker)", price: "Rp 965.000" },
+    ],
+    eceran: [],
+    minOrder: "Min. 1 Kg untuk pembelian curah",
+    highlights: [
+      "100% Garam Himalaya Pink Asli",
+      "Mengandung 84 Mineral Alami",
+      "Sertifikasi PIRT",
+      "Layanan Maklon / Private Label Tersedia",
+      "Pengiriman ke Seluruh Indonesia",
+    ],
+  },
 };
