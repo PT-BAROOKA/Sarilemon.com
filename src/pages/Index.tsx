@@ -11,9 +11,8 @@ import CertificationsSection from "@/components/landing/CertificationsSection";
 import TestimonialsSection from "@/components/landing/TestimonialsSection";
 import ContactSection from "@/components/landing/ContactSection";
 import Footer from "@/components/landing/Footer";
-import FloatingWhatsApp from "@/components/landing/FloatingWhatsApp";
+import FloatingContact from "@/components/landing/FloatingContact";
 import LeadCapturePopup from "@/components/landing/LeadCapturePopup";
-import FloatingChatbot from "@/components/landing/FloatingChatbot";
 
 const Index = () => {
   const { hash } = useLocation();
@@ -42,8 +41,7 @@ const Index = () => {
       <TestimonialsSection />
       <ContactSection />
       <Footer />
-      <FloatingChatbot />
-      <FloatingWhatsApp />
+      <FloatingContact />
       <LeadCapturePopup />
     </div>
   );
