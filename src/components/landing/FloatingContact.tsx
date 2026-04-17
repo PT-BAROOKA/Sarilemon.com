@@ -91,7 +91,7 @@ const FloatingContact = () => {
       {/* Chatbot Window */}
       {chatOpen && (
         <div
-          className="fixed bottom-24 right-6 z-50 w-[340px] sm:w-[380px] max-h-[500px] bg-card rounded-2xl overflow-hidden flex flex-col border border-border"
+          className="fixed bottom-24 right-6 z-50 w-[340px] sm:w-[380px] max-h-[500px] bg-card rounded-2xl overflow-hidden flex flex-col border border-border transition-all duration-300"
           style={{ boxShadow: "0 8px 30px rgba(0,0,0,0.18)" }}
         >
           <div className="bg-primary px-4 py-3 flex items-center justify-between">
@@ -180,7 +180,8 @@ const FloatingContact = () => {
           </span>
           <button
             onClick={handleAIAssistant}
-            className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
+            className="w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
+            style={{ background: "linear-gradient(135deg, hsl(95,50%,48%) 0%, hsl(95,55%,30%) 100%)" }}
             aria-label="AI Assistant"
           >
             <Bot className="w-6 h-6 text-white" />
@@ -209,8 +210,8 @@ const FloatingContact = () => {
         onClick={handleMainToggle}
         className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-5 py-3 rounded-full text-white shadow-lg hover:scale-105 transition-transform"
         style={{
-          background: "linear-gradient(135deg, #00c6fb 0%, #005bea 100%)",
-          boxShadow: "0 4px 20px rgba(0, 91, 234, 0.4)",
+          background: "linear-gradient(135deg, hsl(95,50%,50%) 0%, hsl(95,55%,30%) 100%)",
+          boxShadow: "0 4px 20px rgba(60, 110, 40, 0.45)",
         }}
         aria-label="Hubungi Kami"
       >
