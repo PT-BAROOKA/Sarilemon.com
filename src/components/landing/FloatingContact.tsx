@@ -124,7 +124,7 @@ const FloatingContact = () => {
                 className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
               >
                 <div
-                  className={`max-w-[80%] px-3 py-2 rounded-xl text-sm leading-relaxed ${
+                  className={`max-w-[80%] px-3 py-2 rounded-xl text-sm leading-relaxed text-justify ${
                     msg.role === "user"
                       ? "bg-primary text-primary-foreground rounded-br-sm"
                       : "bg-card text-card-foreground border border-border rounded-bl-sm"
