@@ -2,3 +2,6 @@ project_id = "wfthvovlhphnrodrqxqt"
 
 [functions.auto-publish-blog]
 verify_jwt = false
+
+[functions.chat-sarilemon]
+verify_jwt = false
