@@ -47,7 +47,7 @@ const PAGE: React.CSSProperties = {
 /* ─── Logo pill — always visible on white ───────────────────── */
 const LogoPill: React.FC<{ size?: number }> = ({ size = 32 }) => (
   <div style={{ backgroundColor: C.white, borderRadius: "8px", padding: "5px 10px", display: "inline-flex", alignItems: "center" }}>
-    <img src={barookaLogo} alt="Barooka" style={{ height: `${size}px`, objectFit: "contain" }} />
+    <img src={barookaLogo.src} alt="Barooka" style={{ height: `${size}px`, objectFit: "contain" }} />
   </div>
 );
 
