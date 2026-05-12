@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+'use client';
+
+import Link from "next/link";
 import { products, getWhatsAppLink } from "@/data/products";
 import { Button } from "@/components/ui/button";
 import { Truck, MessageCircle } from "lucide-react";
@@ -9,12 +11,19 @@ import imgChiaSeed from "@/assets/chia_seed_produk.png";
 import imgGaramHimalaya from "@/assets/garam_himalaya_produk.png";
 import imgSariJerukNipis from "@/assets/sari_jeruk_nipis_produk.png";
 
+type ImageModule = { src?: string } | string;
+
+function imgSrc(mod: ImageModule): string {
+  if (typeof mod === 'string') return mod;
+  return (mod as { src?: string }).src ?? '';
+}
+
 const productImages: Record<string, string> = {
-  "sari-lemon": imgSariLemon,
-  "cuka-apel": imgCukaApel,
-  "chia-seed": imgChiaSeed,
-  "garam-himalaya": imgGaramHimalaya,
-  "sari-jeruk-nipis": imgSariJerukNipis,
+  "sari-lemon": imgSrc(imgSariLemon as ImageModule),
+  "cuka-apel": imgSrc(imgCukaApel as ImageModule),
+  "chia-seed": imgSrc(imgChiaSeed as ImageModule),
+  "garam-himalaya": imgSrc(imgGaramHimalaya as ImageModule),
+  "sari-jeruk-nipis": imgSrc(imgSariJerukNipis as ImageModule),
 };
 
 const ProductsSection = () => {
@@ -30,7 +39,7 @@ const ProductsSection = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="relative rounded-2xl overflow-hidden shadow-elegant-lg">
                 <img
-                  src={wholesaleImage}
+                  src={imgSrc(wholesaleImage as ImageModule)}
                   alt="Produk grosir dan curah"
                   className="w-full h-[500px] object-cover"
                   loading="lazy"
@@ -78,7 +87,7 @@ const ProductsSection = () => {
                       <MessageCircle className="w-4 h-4 mr-2" /> Tanya Harga Grosir
                     </Button>
                   </a>
-                  <Link to={`/produk/${featured.slug}`}>
+                  <Link href={`/produk/${featured.slug}`}>
                     <Button variant="outline" size="lg">
                       Detail Produk →
                     </Button>

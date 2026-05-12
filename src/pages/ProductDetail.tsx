@@ -1,5 +1,8 @@
+'use client';
+
 import { useRef, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "next/navigation";
+import Link from "next/link";
 import { products, getWhatsAppLink } from "@/data/products";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Check, Package, MapPin, Clock, Download } from "lucide-react";
@@ -16,15 +19,16 @@ import imgGaramHimalayaProduk from "@/assets/garam_himalaya_produk.png";
 import imgSariJerukNipisProduk from "@/assets/sari_jeruk_nipis_produk.png";
 
 const productImages: Record<string, string> = {
-  "sari-lemon": imgSariLemonProduk,
-  "cuka-apel": imgCukaApelProduk,
-  "chia-seed": imgChiaSeedProduk,
-  "garam-himalaya": imgGaramHimalayaProduk,
-  "sari-jeruk-nipis": imgSariJerukNipisProduk,
+  "sari-lemon": imgSariLemonProduk.src ?? (imgSariLemonProduk as unknown as string),
+  "cuka-apel": imgCukaApelProduk.src ?? (imgCukaApelProduk as unknown as string),
+  "chia-seed": imgChiaSeedProduk.src ?? (imgChiaSeedProduk as unknown as string),
+  "garam-himalaya": imgGaramHimalayaProduk.src ?? (imgGaramHimalayaProduk as unknown as string),
+  "sari-jeruk-nipis": imgSariJerukNipisProduk.src ?? (imgSariJerukNipisProduk as unknown as string),
 };
 
 const ProductDetail = () => {
-  const { slug } = useParams();
+  const params = useParams();
+  const slug = typeof params?.slug === 'string' ? params.slug : '';
   const product = products.find((p) => p.slug === slug);
   const catalogRef = useRef<HTMLDivElement>(null);
   const [downloading, setDownloading] = useState(false);
@@ -47,7 +51,7 @@ const ProductDetail = () => {
       <div className="min-h-screen flex items-center justify-center bg-background">
         <div className="text-center">
           <h1 className="text-3xl font-display font-bold text-foreground mb-4">Produk Tidak Ditemukan</h1>
-          <Link to="/">
+          <Link href="/">
             <Button variant="default">Kembali ke Beranda</Button>
           </Link>
         </div>
@@ -61,7 +65,7 @@ const ProductDetail = () => {
       <div className="pt-24 pb-20">
         <div className="container mx-auto px-4">
           {/* Back */}
-          <Link to="/" className="inline-flex items-center gap-2 font-body text-sm text-muted-foreground hover:text-primary mb-8 transition-colors">
+          <Link href="/" className="inline-flex items-center gap-2 font-body text-sm text-muted-foreground hover:text-primary mb-8 transition-colors">
             <ArrowLeft className="w-4 h-4" /> Kembali ke Beranda
           </Link>
 

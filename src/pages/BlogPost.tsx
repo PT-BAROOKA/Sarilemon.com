@@ -1,6 +1,8 @@
+'use client';
+
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
-import { HelmetProvider, Helmet } from "react-helmet-async";
+import { useParams } from "next/navigation";
+import Link from "next/link";
 import { Calendar, Clock, Tag, ArrowLeft, Share2 } from "lucide-react";
 import DOMPurify from "dompurify";
 import { externalSupabase as supabase } from "@/integrations/supabase/externalClient";
@@ -47,7 +49,8 @@ interface RelatedPost {
 }
 
 const BlogPostPage = () => {
-  const { slug } = useParams<{ slug: string }>();
+  const params = useParams();
+  const slug = typeof params?.slug === 'string' ? params.slug : '';
   const [post, setPost] = useState<BlogPostData | null>(null);
   const [related, setRelated] = useState<RelatedPost[]>([]);
   const [loading, setLoading] = useState(true);
@@ -85,6 +88,7 @@ const BlogPostPage = () => {
     new Date(dateStr).toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" });
 
   const handleShare = () => {
+    if (typeof window === 'undefined') return;
     if (navigator.share) {
       navigator.share({ title: post?.title, url: window.location.href });
     } else {
@@ -114,7 +118,7 @@ const BlogPostPage = () => {
         <main className="pt-24 pb-16 container mx-auto px-4 text-center">
           <h1 className="font-display text-3xl font-bold mb-4">Artikel Tidak Ditemukan</h1>
           <p className="font-body text-muted-foreground mb-6">Artikel yang Anda cari tidak tersedia.</p>
-          <Link to="/blog">
+          <Link href="/blog">
             <Button variant="default">← Kembali ke Blog</Button>
           </Link>
         </main>
@@ -123,154 +127,146 @@ const BlogPostPage = () => {
     );
   }
 
+  const sanitizedContent = typeof window !== 'undefined'
+    ? DOMPurify.sanitize(post.content_html)
+    : post.content_html;
+
   return (
-    <HelmetProvider>
-      <Helmet>
-        <title>{post.meta_title || post.title} — SariLemon.com</title>
-        <meta name="description" content={post.meta_description || post.excerpt} />
-        {post.keywords?.length > 0 && <meta name="keywords" content={post.keywords.join(", ")} />}
-        <meta property="og:title" content={post.meta_title || post.title} />
-        <meta property="og:description" content={post.meta_description || post.excerpt} />
-        {post.og_image_url && <meta property="og:image" content={post.og_image_url} />}
-        <meta property="og:type" content="article" />
-        <link rel="canonical" href={`https://sarilemon.com/blog/${post.slug}`} />
-      </Helmet>
-      <div className="min-h-screen">
-        <Navbar />
-        <main className="pt-24 pb-16">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              {/* Breadcrumb */}
-              <Breadcrumb className="mb-6">
-                <BreadcrumbList>
-                  <BreadcrumbItem>
-                    <BreadcrumbLink asChild>
-                      <Link to="/">Home</Link>
-                    </BreadcrumbLink>
-                  </BreadcrumbItem>
-                  <BreadcrumbSeparator />
-                  <BreadcrumbItem>
-                    <BreadcrumbLink asChild>
-                      <Link to="/blog">Blog</Link>
-                    </BreadcrumbLink>
-                  </BreadcrumbItem>
-                  <BreadcrumbSeparator />
-                  <BreadcrumbItem>
-                    <BreadcrumbPage className="line-clamp-1 max-w-[200px]">{post.title}</BreadcrumbPage>
-                  </BreadcrumbItem>
-                </BreadcrumbList>
-              </Breadcrumb>
+    <div className="min-h-screen">
+      <Navbar />
+      <main className="pt-24 pb-16">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            {/* Breadcrumb */}
+            <Breadcrumb className="mb-6">
+              <BreadcrumbList>
+                <BreadcrumbItem>
+                  <BreadcrumbLink asChild>
+                    <Link href="/">Home</Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbLink asChild>
+                    <Link href="/blog">Blog</Link>
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbSeparator />
+                <BreadcrumbItem>
+                  <BreadcrumbPage className="line-clamp-1 max-w-[200px]">{post.title}</BreadcrumbPage>
+                </BreadcrumbItem>
+              </BreadcrumbList>
+            </Breadcrumb>
 
-              {/* Header */}
-              <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 leading-tight">
-                {post.title}
-              </h1>
+            {/* Header */}
+            <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 leading-tight">
+              {post.title}
+            </h1>
 
-              <div className="flex flex-wrap items-center gap-4 text-sm font-body text-muted-foreground mb-6">
-                <span className="flex items-center gap-1.5">
-                  <Calendar className="w-4 h-4" />
-                  {formatDate(post.published_at)}
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <Clock className="w-4 h-4" />
-                  {post.reading_time_minutes} menit baca
-                </span>
-                <span className="text-xs text-muted-foreground/60">
-                  {post.word_count} kata
-                </span>
-                <button onClick={handleShare} className="ml-auto flex items-center gap-1 hover:text-primary transition-colors">
-                  <Share2 className="w-4 h-4" /> Bagikan
-                </button>
-              </div>
-
-              {/* Tags */}
-              {post.tags?.length > 0 && (
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {post.tags.map((tag) => (
-                    <span key={tag} className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-body font-medium">
-                      <Tag className="w-3 h-3" /> {tag}
-                    </span>
-                  ))}
-                </div>
-              )}
-
-              {/* Featured Image */}
-              {post.featured_image_url && (
-                <div className="rounded-xl overflow-hidden mb-8">
-                  <img
-                    src={post.featured_image_url}
-                    alt={post.title}
-                    className="w-full h-auto max-h-[500px] object-cover"
-                  />
-                </div>
-              )}
-
-              {/* Content */}
-              <article
-                className="blog-content font-body"
-                dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.content_html) }}
-              />
-
-              {/* WhatsApp CTA */}
-              <div className="mt-12 p-6 rounded-xl bg-primary/5 border border-primary/20 text-center">
-                <p className="font-display text-xl font-semibold text-foreground mb-2">
-                  Tertarik dengan produk SariLemon?
-                </p>
-                <p className="font-body text-sm text-muted-foreground mb-4">
-                  Hubungi kami untuk informasi harga, MOQ, dan pemesanan.
-                </p>
-                <a href={getWhatsAppLink()} target="_blank" rel="noopener noreferrer">
-                  <Button variant="whatsapp" size="lg">Hubungi via WhatsApp</Button>
-                </a>
-              </div>
-
-              {/* Back link */}
-              <div className="mt-8">
-                <Link to="/blog" className="inline-flex items-center gap-2 font-body text-sm text-primary hover:underline">
-                  <ArrowLeft className="w-4 h-4" /> Kembali ke Blog
-                </Link>
-              </div>
+            <div className="flex flex-wrap items-center gap-4 text-sm font-body text-muted-foreground mb-6">
+              <span className="flex items-center gap-1.5">
+                <Calendar className="w-4 h-4" />
+                {formatDate(post.published_at)}
+              </span>
+              <span className="flex items-center gap-1.5">
+                <Clock className="w-4 h-4" />
+                {post.reading_time_minutes} menit baca
+              </span>
+              <span className="text-xs text-muted-foreground/60">
+                {post.word_count} kata
+              </span>
+              <button onClick={handleShare} className="ml-auto flex items-center gap-1 hover:text-primary transition-colors">
+                <Share2 className="w-4 h-4" /> Bagikan
+              </button>
             </div>
 
-            {/* Related Posts */}
-            {related.length > 0 && (
-              <div className="max-w-4xl mx-auto mt-16">
-                <h2 className="font-display text-2xl font-bold text-foreground mb-6">Artikel Terkait</h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {related.map((r) => (
-                    <Link
-                      key={r.id}
-                      to={`/blog/${r.slug}`}
-                      className="group rounded-xl overflow-hidden border border-border bg-card hover:shadow-elegant transition-all duration-300"
-                    >
-                      <div className="aspect-video overflow-hidden">
-                        <img
-                          src={r.featured_image_url || "/placeholder.svg"}
-                          alt={r.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                          loading="lazy"
-                        />
-                      </div>
-                      <div className="p-4">
-                        <h3 className="font-display text-sm font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-2">
-                          {r.title}
-                        </h3>
-                        <p className="font-body text-xs text-muted-foreground mt-1">
-                          {formatDate(r.published_at)}
-                        </p>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
+            {/* Tags */}
+            {post.tags?.length > 0 && (
+              <div className="flex flex-wrap gap-2 mb-6">
+                {post.tags.map((tag) => (
+                  <span key={tag} className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-body font-medium">
+                    <Tag className="w-3 h-3" /> {tag}
+                  </span>
+                ))}
               </div>
             )}
+
+            {/* Featured Image */}
+            {post.featured_image_url && (
+              <div className="rounded-xl overflow-hidden mb-8">
+                <img
+                  src={post.featured_image_url}
+                  alt={post.title}
+                  className="w-full h-auto max-h-[500px] object-cover"
+                />
+              </div>
+            )}
+
+            {/* Content */}
+            <article
+              className="blog-content font-body"
+              dangerouslySetInnerHTML={{ __html: sanitizedContent }}
+            />
+
+            {/* WhatsApp CTA */}
+            <div className="mt-12 p-6 rounded-xl bg-primary/5 border border-primary/20 text-center">
+              <p className="font-display text-xl font-semibold text-foreground mb-2">
+                Tertarik dengan produk SariLemon?
+              </p>
+              <p className="font-body text-sm text-muted-foreground mb-4">
+                Hubungi kami untuk informasi harga, MOQ, dan pemesanan.
+              </p>
+              <a href={getWhatsAppLink()} target="_blank" rel="noopener noreferrer">
+                <Button variant="whatsapp" size="lg">Hubungi via WhatsApp</Button>
+              </a>
+            </div>
+
+            {/* Back link */}
+            <div className="mt-8">
+              <Link href="/blog" className="inline-flex items-center gap-2 font-body text-sm text-primary hover:underline">
+                <ArrowLeft className="w-4 h-4" /> Kembali ke Blog
+              </Link>
+            </div>
           </div>
-        </main>
-        <Footer />
-        <FloatingChatbot />
-        <FloatingWhatsApp />
-      </div>
-    </HelmetProvider>
+
+          {/* Related Posts */}
+          {related.length > 0 && (
+            <div className="max-w-4xl mx-auto mt-16">
+              <h2 className="font-display text-2xl font-bold text-foreground mb-6">Artikel Terkait</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {related.map((r) => (
+                  <Link
+                    key={r.id}
+                    href={`/blog/${r.slug}`}
+                    className="group rounded-xl overflow-hidden border border-border bg-card hover:shadow-elegant transition-all duration-300"
+                  >
+                    <div className="aspect-video overflow-hidden">
+                      <img
+                        src={r.featured_image_url || "/placeholder.svg"}
+                        alt={r.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div className="p-4">
+                      <h3 className="font-display text-sm font-semibold text-foreground group-hover:text-primary transition-colors line-clamp-2">
+                        {r.title}
+                      </h3>
+                      <p className="font-body text-xs text-muted-foreground mt-1">
+                        {formatDate(r.published_at)}
+                      </p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </main>
+      <Footer />
+      <FloatingChatbot />
+      <FloatingWhatsApp />
+    </div>
   );
 };
 

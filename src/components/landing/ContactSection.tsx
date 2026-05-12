@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { getWhatsAppLink, WHATSAPP_NUMBER } from "@/data/products";

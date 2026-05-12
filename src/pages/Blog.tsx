@@ -1,6 +1,7 @@
+'use client';
+
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { HelmetProvider, Helmet } from "react-helmet-async";
+import Link from "next/link";
 import { Calendar, Clock, Tag } from "lucide-react";
 import { externalSupabase as supabase } from "@/integrations/supabase/externalClient";
 import Navbar from "@/components/landing/Navbar";
@@ -60,11 +61,7 @@ const Blog = () => {
   };
 
   return (
-    <HelmetProvider>
-      <Helmet>
-        <title>Blog — SariLemon.com | Tips Kesehatan & Produk Alami</title>
-        <meta name="description" content="Baca artikel terbaru seputar manfaat sari lemon, tips kesehatan, diet alami, dan produk kesehatan dari SariLemon.com" />
-      </Helmet>
+    <>
       <div className="min-h-screen">
         <Navbar />
         <main className="pt-24 pb-16">
@@ -102,7 +99,7 @@ const Blog = () => {
                 {posts.map((post) => (
                   <Link
                     key={post.id}
-                    to={`/blog/${post.slug}`}
+                    href={`/blog/${post.slug}`}
                     className="group rounded-xl overflow-hidden border border-border bg-card hover:shadow-elegant transition-all duration-300 hover:-translate-y-1"
                   >
                     <div className="aspect-video overflow-hidden">
@@ -174,7 +171,7 @@ const Blog = () => {
         <FloatingChatbot />
         <FloatingWhatsApp />
       </div>
-    </HelmetProvider>
+    </>
   );
 };
 

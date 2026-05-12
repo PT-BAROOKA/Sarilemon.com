@@ -1,6 +1,8 @@
+'use client';
+
 import { useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { products, getWhatsAppLink } from "@/data/products";
 import { Button } from "@/components/ui/button";
 import barookaLogo from "@/assets/barooka-logo.png";
@@ -14,14 +16,14 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2">
-            <img src={barookaLogo} alt="Barooka" className="h-14 md:h-16 w-auto" />
+          <Link href="/" className="flex items-center gap-2">
+            <img src={(barookaLogo as { src?: string }).src ?? (barookaLogo as unknown as string)} alt="Barooka" className="h-14 md:h-16 w-auto" />
             <span className="font-display text-lg md:text-xl font-bold"><span className="text-primary">Sari</span> <span className="text-lemon-gold">Lemon</span></span>
           </Link>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
-            <Link to="/" className="font-body text-sm font-medium text-foreground/70 hover:text-primary transition-colors">
+            <Link href="/" className="font-body text-sm font-medium text-foreground/70 hover:text-primary transition-colors">
               Beranda
             </Link>
             <div
@@ -38,7 +40,7 @@ const Navbar = () => {
                     {products.map((p) => (
                       <Link
                         key={p.slug}
-                        to={`/produk/${p.slug}`}
+                        href={`/produk/${p.slug}`}
                         onClick={() => setShowProducts(false)}
                         className="block px-4 py-2 rounded-md text-sm font-body text-foreground/70 hover:bg-muted hover:text-primary transition-colors"
                       >
@@ -49,16 +51,16 @@ const Navbar = () => {
                 </div>
               )}
             </div>
-            <Link to="/#maklon" className="font-body text-sm font-medium text-foreground/70 hover:text-primary transition-colors">
+            <Link href="/#maklon" className="font-body text-sm font-medium text-foreground/70 hover:text-primary transition-colors">
               Maklon
             </Link>
-            <Link to="/#proses" className="font-body text-sm font-medium text-foreground/70 hover:text-primary transition-colors">
+            <Link href="/#proses" className="font-body text-sm font-medium text-foreground/70 hover:text-primary transition-colors">
               Proses
             </Link>
-            <Link to="/#kontak" className="font-body text-sm font-medium text-foreground/70 hover:text-primary transition-colors">
+            <Link href="/#kontak" className="font-body text-sm font-medium text-foreground/70 hover:text-primary transition-colors">
               Kontak
             </Link>
-            <Link to="/blog" className="font-body text-sm font-medium text-foreground/70 hover:text-primary transition-colors">
+            <Link href="/blog" className="font-body text-sm font-medium text-foreground/70 hover:text-primary transition-colors">
               Blog
             </Link>
             <a
@@ -85,19 +87,19 @@ const Navbar = () => {
         {isOpen && (
           <div className="md:hidden pb-4 animate-fade-in">
             <div className="flex flex-col gap-2">
-              <Link to="/" onClick={() => setIsOpen(false)} className="px-4 py-2 rounded-md font-body text-sm text-foreground/70 hover:bg-muted">Beranda</Link>
+              <Link href="/" onClick={() => setIsOpen(false)} className="px-4 py-2 rounded-md font-body text-sm text-foreground/70 hover:bg-muted">Beranda</Link>
               <div className="px-4 py-2">
                 <p className="font-body text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Produk</p>
                 {products.map((p) => (
-                  <Link key={p.slug} to={`/produk/${p.slug}`} onClick={() => setIsOpen(false)} className="block py-1.5 text-sm font-body text-foreground/70 hover:text-primary">
+                  <Link key={p.slug} href={`/produk/${p.slug}`} onClick={() => setIsOpen(false)} className="block py-1.5 text-sm font-body text-foreground/70 hover:text-primary">
                     {p.name}
                   </Link>
                 ))}
               </div>
-              <Link to="/#maklon" onClick={() => setIsOpen(false)} className="px-4 py-2 rounded-md font-body text-sm text-foreground/70 hover:bg-muted">Maklon</Link>
-              <Link to="/#proses" onClick={() => setIsOpen(false)} className="px-4 py-2 rounded-md font-body text-sm text-foreground/70 hover:bg-muted">Proses</Link>
-              <Link to="/#kontak" onClick={() => setIsOpen(false)} className="px-4 py-2 rounded-md font-body text-sm text-foreground/70 hover:bg-muted">Kontak</Link>
-              <Link to="/blog" onClick={() => setIsOpen(false)} className="px-4 py-2 rounded-md font-body text-sm text-foreground/70 hover:bg-muted">Blog</Link>
+              <Link href="/#maklon" onClick={() => setIsOpen(false)} className="px-4 py-2 rounded-md font-body text-sm text-foreground/70 hover:bg-muted">Maklon</Link>
+              <Link href="/#proses" onClick={() => setIsOpen(false)} className="px-4 py-2 rounded-md font-body text-sm text-foreground/70 hover:bg-muted">Proses</Link>
+              <Link href="/#kontak" onClick={() => setIsOpen(false)} className="px-4 py-2 rounded-md font-body text-sm text-foreground/70 hover:bg-muted">Kontak</Link>
+              <Link href="/blog" onClick={() => setIsOpen(false)} className="px-4 py-2 rounded-md font-body text-sm text-foreground/70 hover:bg-muted">Blog</Link>
               <div className="px-4 pt-2">
                 <a href={getWhatsAppLink()} target="_blank" rel="noopener noreferrer">
                   <Button variant="whatsapp" className="w-full">WhatsApp</Button>

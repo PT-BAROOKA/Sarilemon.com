@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect } from "react";
 import { X, Sparkles } from "lucide-react";
 import { externalSupabase } from "@/integrations/supabase/externalClient";

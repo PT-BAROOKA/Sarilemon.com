@@ -1,5 +1,6 @@
+'use client';
+
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import Navbar from "@/components/landing/Navbar";
 import HeroSection from "@/components/landing/HeroSection";
 import WhyUsSection from "@/components/landing/WhyUsSection";
@@ -15,9 +16,9 @@ import FloatingContact from "@/components/landing/FloatingContact";
 import LeadCapturePopup from "@/components/landing/LeadCapturePopup";
 
 const Index = () => {
-  const { hash } = useLocation();
-
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const hash = window.location.hash;
     if (hash) {
       const el = document.querySelector(hash);
       if (el) {
@@ -26,7 +27,7 @@ const Index = () => {
     } else {
       window.scrollTo(0, 0);
     }
-  }, [hash]);
+  }, []);
 
   return (
     <div className="min-h-screen">

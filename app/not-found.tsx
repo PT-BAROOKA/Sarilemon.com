@@ -1,13 +1,6 @@
-'use client';
+import Link from 'next/link';
 
-import { useEffect } from "react";
-import Link from "next/link";
-
-const NotFound = () => {
-  useEffect(() => {
-    console.error("404 Error: User attempted to access non-existent route:", typeof window !== 'undefined' ? window.location.pathname : '');
-  }, []);
-
+export default function NotFound() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-muted">
       <div className="text-center">
@@ -19,6 +12,4 @@ const NotFound = () => {
       </div>
     </div>
   );
-};
-
-export default NotFound;
+}

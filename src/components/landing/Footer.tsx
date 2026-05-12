@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+'use client';
+
+import Link from "next/link";
 import { WHATSAPP_NUMBER } from "@/data/products";
 import barookaLogo from "@/assets/barooka-logo.png";
 
@@ -9,7 +11,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {/* Brand */}
           <div>
-            <img src={barookaLogo} alt="Barooka" className="h-14 w-auto mb-4 brightness-0 invert" />
+            <img src={(barookaLogo as { src?: string }).src ?? (barookaLogo as unknown as string)} alt="Barooka" className="h-14 w-auto mb-4 brightness-0 invert" />
             <h3 className="text-2xl font-display font-bold mb-3">
               <span className="text-lemon-gold">SariLemon</span>.com
             </h3>
@@ -23,37 +25,37 @@ const Footer = () => {
             <h4 className="font-display text-lg font-semibold mb-4">Menu</h4>
             <div className="space-y-3">
               <Link
-                to="/"
+                href="/"
                 className="block font-body text-sm text-primary-foreground/70 hover:text-accent transition-colors"
               >
                 Beranda
               </Link>
               <Link
-                to="/#produk"
+                href="/#produk"
                 className="block font-body text-sm text-primary-foreground/70 hover:text-accent transition-colors"
               >
                 Produk
               </Link>
               <Link
-                to="/#maklon"
+                href="/#maklon"
                 className="block font-body text-sm text-primary-foreground/70 hover:text-accent transition-colors"
               >
                 Maklon
               </Link>
               <Link
-                to="/#proses"
+                href="/#proses"
                 className="block font-body text-sm text-primary-foreground/70 hover:text-accent transition-colors"
               >
                 Proses
               </Link>
               <Link
-                to="/#testimonial"
+                href="/#testimonial"
                 className="block font-body text-sm text-primary-foreground/70 hover:text-accent transition-colors"
               >
                 Testimoni
               </Link>
               <Link
-                to="/#kontak"
+                href="/#kontak"
                 className="block font-body text-sm text-primary-foreground/70 hover:text-accent transition-colors"
               >
                 Kontak
