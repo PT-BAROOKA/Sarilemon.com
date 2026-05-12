@@ -1,4 +1,4 @@
-import BlogPostPage from '@/src/pages/BlogPost';
+import BlogPostPage from '@/src/_legacy-vite-pages/BlogPost';
 
 export default function Page() {
   return <BlogPostPage />;
