@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { X, Sparkles } from "lucide-react";
-import { externalSupabase } from "@/integrations/supabase/externalClient";
+import { leadsSupabase } from "@/integrations/supabase/leadsClient";
 
 const STORAGE_KEY = "sarilemon_lead_submitted";
 
@@ -30,7 +30,7 @@ const LeadCapturePopup = () => {
 
     setIsSubmitting(true);
     try {
-      const { error } = await externalSupabase.from("leads").insert({
+      const { error } = await leadsSupabase.from("leads").insert({
         nama: form.nama.trim(),
         kontak: form.kontak.trim(),
         sumber: window.location.hostname,
